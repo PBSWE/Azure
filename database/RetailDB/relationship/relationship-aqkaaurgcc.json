@@ -1,0 +1,26 @@
+{
+	"name": "relationship-aqkaaurgcc",
+	"properties": {
+		"Name": "relationship-aqkaaurgcc",
+		"EntityType": "RELATIONSHIP",
+		"Namespace": {
+			"DatabaseName": "RetailDB"
+		},
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"FromTableName": "Product",
+		"ToTableName": "SalesOrder",
+		"ColumnRelationshipInformations": [
+			{
+				"FromColumnName": "ProductId",
+				"ToColumnName": "ProductId"
+			}
+		],
+		"RelationshipType": 0,
+		"PublishStatus": "PUBLISHED",
+		"ObjectVersion": 1,
+		"ObjectId": "e812093c-7774-40dd-91e6-5d7c0726372e"
+	},
+	"type": "RELATIONSHIP"
+}

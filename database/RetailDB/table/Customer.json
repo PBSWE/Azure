@@ -1,0 +1,157 @@
+{
+	"name": "Customer",
+	"properties": {
+		"Name": "Customer",
+		"EntityType": "TABLE",
+		"TableType": "EXTERNAL",
+		"Namespace": {
+			"SchemaName": null,
+			"DatabaseName": "RetailDB",
+			"DatabaseId": null
+		},
+		"Partitioning": {
+			"PartitionFunctionType": null,
+			"Keys": null
+		},
+		"StorageDescriptor": {
+			"Distribution": null,
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "Unique customer ID",
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 0,
+						"Precision": 0,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "FirstName",
+					"Description": "Customer first name",
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Precision": 0,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LastName",
+					"Description": "Customer last name",
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Precision": 0,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EmailAddress",
+					"Description": "Customer email",
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Precision": 0,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "Phone",
+					"Description": "Customer phone",
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Precision": 0,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"ColumnSetEntityName": "28f3ec41-9187-4d54-bf9a-4ec2e12be03d",
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://files@datalakeowbl0dp.dfs.core.windows.net/RetailDB/Customer",
+					"delimiter": ",",
+					"firstRowAsHeader": "false",
+					"multiLine": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://files@datalakeowbl0dp.dfs.core.windows.net/RetailDB/Customer",
+				"Properties": {
+					"LinkedServiceName": "synapseowbl0dp-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{}}"
+			},
+			"Compressed": false,
+			"SerDeInfo": null,
+			"IsStoredAsSubdirectories": false
+		},
+		"Owner": null,
+		"CreateTime": 0,
+		"LastAccessTime": 0,
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false,
+		"ViewOriginalText": null,
+		"ViewExpandedText": null,
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"OriginObjectId": null,
+		"IsSharedEntity": false,
+		"PublishStatus": "PUBLISHED",
+		"Properties": {
+			"Description": "",
+			"DisplayFolderInfo": "{\"name\":\"Others\",\"colorCode\":\"\"}",
+			"PrimaryKeys": "CustomerId",
+			"spark.sql.sources.provider": "csv",
+			"spark.sql.sources.schema.numParts": "1",
+			"spark.sql.sources.schema.part.0": "{\"type\":\"struct\",\"fields\":[{\"name\":\"CustomerId\",\"type\":\"long\",\"nullable\":false,\"metadata\":{}},{\"name\":\"FirstName\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}},{\"name\":\"LastName\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}},{\"name\":\"EmailAddress\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}},{\"name\":\"Phone\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}}]}"
+		},
+		"ObjectVersion": 1,
+		"ObjectId": "b5ef5769-1e73-44d7-996b-53bf82177b9c",
+		"Description": ""
+	},
+	"type": "TABLE"
+}
