@@ -1,0 +1,1119 @@
+{
+	"name": "Spark Transform",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "sparkqc6i2oh",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "d1c98c2f-79d1-4361-a09a-b151ba79bf90"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"c3bf5248-204a-47d5-8ca4-30be67512385": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "SO49171",
+										"1": "1",
+										"2": "2021-01-01",
+										"3": "Mariah Foster",
+										"4": "mariah21@adventure-works.com",
+										"5": "Road-250 Black, 48",
+										"6": "1",
+										"7": "2181.5625",
+										"8": "174.525"
+									},
+									{
+										"0": "SO49172",
+										"1": "1",
+										"2": "2021-01-01",
+										"3": "Brian Howard",
+										"4": "brian23@adventure-works.com",
+										"5": "Road-250 Red, 44",
+										"6": "1",
+										"7": "2443.35",
+										"8": "195.468"
+									},
+									{
+										"0": "SO49173",
+										"1": "1",
+										"2": "2021-01-01",
+										"3": "Linda Alvarez",
+										"4": "linda19@adventure-works.com",
+										"5": "Mountain-200 Silver, 38",
+										"6": "1",
+										"7": "2071.4196",
+										"8": "165.7136"
+									},
+									{
+										"0": "SO49174",
+										"1": "1",
+										"2": "2021-01-01",
+										"3": "Gina Hernandez",
+										"4": "gina4@adventure-works.com",
+										"5": "Mountain-200 Silver, 42",
+										"6": "1",
+										"7": "2071.4196",
+										"8": "165.7136"
+									},
+									{
+										"0": "SO49178",
+										"1": "1",
+										"2": "2021-01-01",
+										"3": "Beth Ruiz",
+										"4": "beth4@adventure-works.com",
+										"5": "Road-550-W Yellow, 44",
+										"6": "1",
+										"7": "1000.4375",
+										"8": "80.035"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "SalesOrderNumber",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "SalesOrderLineNumber",
+										"type": "int"
+									},
+									{
+										"key": "2",
+										"name": "OrderDate",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "CustomerName",
+										"type": "string"
+									},
+									{
+										"key": "4",
+										"name": "EmailAddress",
+										"type": "string"
+									},
+									{
+										"key": "5",
+										"name": "Item",
+										"type": "string"
+									},
+									{
+										"key": "6",
+										"name": "Quantity",
+										"type": "int"
+									},
+									{
+										"key": "7",
+										"name": "UnitPrice",
+										"type": "double"
+									},
+									{
+										"key": "8",
+										"name": "TaxAmount",
+										"type": "double"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "sum",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"1"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"32756053-8b78-451c-b64a-1c26c5fb491a": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "SO45347",
+										"1": "1",
+										"2": "2020-01-01",
+										"3": "clarence35@adventure-works.com",
+										"4": "Road-650 Black, 52",
+										"5": "1",
+										"6": "699.0982",
+										"7": "55.9279",
+										"8": "Clarence",
+										"9": "Raji"
+									},
+									{
+										"0": "SO45345",
+										"1": "1",
+										"2": "2020-01-01",
+										"3": "bonnie12@adventure-works.com",
+										"4": "Road-150 Red, 52",
+										"5": "1",
+										"6": "3578.27",
+										"7": "286.2616",
+										"8": "Bonnie",
+										"9": "Yuan"
+									},
+									{
+										"0": "SO45348",
+										"1": "1",
+										"2": "2020-01-01",
+										"3": "leah14@adventure-works.com",
+										"4": "Road-150 Red, 44",
+										"5": "1",
+										"6": "3578.27",
+										"7": "286.2616",
+										"8": "Leah",
+										"9": "Guo"
+									},
+									{
+										"0": "SO45349",
+										"1": "1",
+										"2": "2020-01-01",
+										"3": "candice19@adventure-works.com",
+										"4": "Road-150 Red, 48",
+										"5": "1",
+										"6": "3578.27",
+										"7": "286.2616",
+										"8": "Candice",
+										"9": "Sun"
+									},
+									{
+										"0": "SO45350",
+										"1": "1",
+										"2": "2020-01-01",
+										"3": "ruben16@adventure-works.com",
+										"4": "Road-150 Red, 44",
+										"5": "1",
+										"6": "3578.27",
+										"7": "286.2616",
+										"8": "Ruben",
+										"9": "Garcia"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "SalesOrderNumber",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "SalesOrderLineNumber",
+										"type": "int"
+									},
+									{
+										"key": "2",
+										"name": "OrderDate",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "EmailAddress",
+										"type": "string"
+									},
+									{
+										"key": "4",
+										"name": "Item",
+										"type": "string"
+									},
+									{
+										"key": "5",
+										"name": "Quantity",
+										"type": "int"
+									},
+									{
+										"key": "6",
+										"name": "UnitPrice",
+										"type": "double"
+									},
+									{
+										"key": "7",
+										"name": "TaxAmount",
+										"type": "double"
+									},
+									{
+										"key": "8",
+										"name": "FirstName",
+										"type": "string"
+									},
+									{
+										"key": "9",
+										"name": "LastName",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "sum",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"1"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"1b1ba31a-798c-4494-8a81-fa724c609c02": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "SO45347",
+										"1": "1",
+										"2": "2020-01-01",
+										"3": "clarence35@adventure-works.com",
+										"4": "Road-650 Black, 52",
+										"5": "1",
+										"6": "699.0982",
+										"7": "55.9279",
+										"8": "Clarence",
+										"9": "Raji",
+										"10": "2020",
+										"11": "1"
+									},
+									{
+										"0": "SO45345",
+										"1": "1",
+										"2": "2020-01-01",
+										"3": "bonnie12@adventure-works.com",
+										"4": "Road-150 Red, 52",
+										"5": "1",
+										"6": "3578.27",
+										"7": "286.2616",
+										"8": "Bonnie",
+										"9": "Yuan",
+										"10": "2020",
+										"11": "1"
+									},
+									{
+										"0": "SO45348",
+										"1": "1",
+										"2": "2020-01-01",
+										"3": "leah14@adventure-works.com",
+										"4": "Road-150 Red, 44",
+										"5": "1",
+										"6": "3578.27",
+										"7": "286.2616",
+										"8": "Leah",
+										"9": "Guo",
+										"10": "2020",
+										"11": "1"
+									},
+									{
+										"0": "SO45349",
+										"1": "1",
+										"2": "2020-01-01",
+										"3": "candice19@adventure-works.com",
+										"4": "Road-150 Red, 48",
+										"5": "1",
+										"6": "3578.27",
+										"7": "286.2616",
+										"8": "Candice",
+										"9": "Sun",
+										"10": "2020",
+										"11": "1"
+									},
+									{
+										"0": "SO45350",
+										"1": "1",
+										"2": "2020-01-01",
+										"3": "ruben16@adventure-works.com",
+										"4": "Road-150 Red, 44",
+										"5": "1",
+										"6": "3578.27",
+										"7": "286.2616",
+										"8": "Ruben",
+										"9": "Garcia",
+										"10": "2020",
+										"11": "1"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "SalesOrderNumber",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "SalesOrderLineNumber",
+										"type": "int"
+									},
+									{
+										"key": "2",
+										"name": "OrderDate",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "EmailAddress",
+										"type": "string"
+									},
+									{
+										"key": "4",
+										"name": "Item",
+										"type": "string"
+									},
+									{
+										"key": "5",
+										"name": "Quantity",
+										"type": "int"
+									},
+									{
+										"key": "6",
+										"name": "UnitPrice",
+										"type": "double"
+									},
+									{
+										"key": "7",
+										"name": "TaxAmount",
+										"type": "double"
+									},
+									{
+										"key": "8",
+										"name": "FirstName",
+										"type": "string"
+									},
+									{
+										"key": "9",
+										"name": "LastName",
+										"type": "string"
+									},
+									{
+										"key": "10",
+										"name": "Year",
+										"type": "int"
+									},
+									{
+										"key": "11",
+										"name": "Month",
+										"type": "int"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "sum",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"1"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"5168478f-31d5-486f-b908-8fafbe69a4c0": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "SO48415",
+										"1": "1",
+										"2": "2020-11-01",
+										"3": "devin20@adventure-works.com",
+										"4": "Mountain-200 Silver, 46",
+										"5": "1",
+										"6": "2071.4196",
+										"7": "165.7136",
+										"8": "Devin",
+										"9": "Walker"
+									},
+									{
+										"0": "SO48419",
+										"1": "1",
+										"2": "2020-11-01",
+										"3": "alejandro15@adventure-works.com",
+										"4": "Road-650 Black, 44",
+										"5": "1",
+										"6": "782.99",
+										"7": "62.6392",
+										"8": "Alejandro",
+										"9": "Xu"
+									},
+									{
+										"0": "SO48413",
+										"1": "1",
+										"2": "2020-11-01",
+										"3": "christina5@adventure-works.com",
+										"4": "Road-550-W Yellow, 40",
+										"5": "1",
+										"6": "1000.4375",
+										"7": "80.035",
+										"8": "Christina",
+										"9": "Ramirez"
+									},
+									{
+										"0": "SO48414",
+										"1": "1",
+										"2": "2020-11-01",
+										"3": "marcus52@adventure-works.com",
+										"4": "Road-250 Red, 48",
+										"5": "1",
+										"6": "2443.35",
+										"7": "195.468",
+										"8": "Marcus",
+										"9": "Barnes"
+									},
+									{
+										"0": "SO48418",
+										"1": "1",
+										"2": "2020-11-01",
+										"3": "claudia0@adventure-works.com",
+										"4": "Mountain-200 Silver, 38",
+										"5": "1",
+										"6": "2071.4196",
+										"7": "165.7136",
+										"8": "Claudia",
+										"9": "Zhang"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "SalesOrderNumber",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "SalesOrderLineNumber",
+										"type": "int"
+									},
+									{
+										"key": "2",
+										"name": "OrderDate",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "EmailAddress",
+										"type": "string"
+									},
+									{
+										"key": "4",
+										"name": "Item",
+										"type": "string"
+									},
+									{
+										"key": "5",
+										"name": "Quantity",
+										"type": "int"
+									},
+									{
+										"key": "6",
+										"name": "UnitPrice",
+										"type": "double"
+									},
+									{
+										"key": "7",
+										"name": "TaxAmount",
+										"type": "double"
+									},
+									{
+										"key": "8",
+										"name": "FirstName",
+										"type": "string"
+									},
+									{
+										"key": "9",
+										"name": "LastName",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "sum",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"1"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"e9c692a1-b63a-49f0-8ae2-525de5bbdaa2": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "SO49171",
+										"1": "1",
+										"2": "2021-01-01",
+										"3": "Mariah Foster",
+										"4": "mariah21@adventure-works.com",
+										"5": "Road-250 Black, 48",
+										"6": "1",
+										"7": "2181.5625",
+										"8": "174.525",
+										"9": "2021",
+										"10": "1"
+									},
+									{
+										"0": "SO49172",
+										"1": "1",
+										"2": "2021-01-01",
+										"3": "Brian Howard",
+										"4": "brian23@adventure-works.com",
+										"5": "Road-250 Red, 44",
+										"6": "1",
+										"7": "2443.35",
+										"8": "195.468",
+										"9": "2021",
+										"10": "1"
+									},
+									{
+										"0": "SO49173",
+										"1": "1",
+										"2": "2021-01-01",
+										"3": "Linda Alvarez",
+										"4": "linda19@adventure-works.com",
+										"5": "Mountain-200 Silver, 38",
+										"6": "1",
+										"7": "2071.4196",
+										"8": "165.7136",
+										"9": "2021",
+										"10": "1"
+									},
+									{
+										"0": "SO49174",
+										"1": "1",
+										"2": "2021-01-01",
+										"3": "Gina Hernandez",
+										"4": "gina4@adventure-works.com",
+										"5": "Mountain-200 Silver, 42",
+										"6": "1",
+										"7": "2071.4196",
+										"8": "165.7136",
+										"9": "2021",
+										"10": "1"
+									},
+									{
+										"0": "SO49178",
+										"1": "1",
+										"2": "2021-01-01",
+										"3": "Beth Ruiz",
+										"4": "beth4@adventure-works.com",
+										"5": "Road-550-W Yellow, 44",
+										"6": "1",
+										"7": "1000.4375",
+										"8": "80.035",
+										"9": "2021",
+										"10": "1"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "SalesOrderNumber",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "SalesOrderLineNumber",
+										"type": "int"
+									},
+									{
+										"key": "2",
+										"name": "OrderDate",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "CustomerName",
+										"type": "string"
+									},
+									{
+										"key": "4",
+										"name": "EmailAddress",
+										"type": "string"
+									},
+									{
+										"key": "5",
+										"name": "Item",
+										"type": "string"
+									},
+									{
+										"key": "6",
+										"name": "Quantity",
+										"type": "int"
+									},
+									{
+										"key": "7",
+										"name": "UnitPrice",
+										"type": "double"
+									},
+									{
+										"key": "8",
+										"name": "TaxAmount",
+										"type": "double"
+									},
+									{
+										"key": "9",
+										"name": "Year",
+										"type": "int"
+									},
+									{
+										"key": "10",
+										"name": "Month",
+										"type": "int"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "sum",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"1"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/03abaa34-9cfc-472c-908a-b70440a24cd7/resourceGroups/dp203-qc6i2oh/providers/Microsoft.Synapse/workspaces/synapseqc6i2oh/bigDataPools/sparkqc6i2oh",
+				"name": "sparkqc6i2oh",
+				"type": "Spark",
+				"endpoint": "https://synapseqc6i2oh.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkqc6i2oh",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.2",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"source": [
+					"# Transform data by using Spark\n",
+					"\n",
+					"Apache Spark provides a distributed data processing platform that you can use to perform complex data transformations at scale.\n",
+					"\n",
+					"\n",
+					"## Load source data\n",
+					"\n",
+					"Let's start by loading some historical sales order data into a dataframe.\n",
+					"\n",
+					"Review the code in the cell below, which loads the sales order from all of the csv files within the **data** directory. Then click the **&#9655;** button to the left of the cell to run it.\n",
+					"\n",
+					"> **Note**: The first time you run a cell in a notebook, the Spark pool must be started; which can take several minutes."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
+				"source": [
+					"order_details = spark.read.csv('/data/*.csv', header=True, inferSchema=True)\n",
+					"display(order_details.limit(5))"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## Transform the data structure\r\n",
+					"\r\n",
+					"The source data includes a **CustomerName** field, that contains the customer's first and last name. Let's modify the dataframe to separate this field into separate **FirstName** and **LastName** fields."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"from pyspark.sql.functions import split, col\r\n",
+					"\r\n",
+					"# Create the new FirstName and LastName fields\r\n",
+					"transformed_df = order_details.withColumn(\"FirstName\", split(col(\"CustomerName\"), \" \").getItem(0)).withColumn(\"LastName\", split(col(\"CustomerName\"), \" \").getItem(1))\r\n",
+					"\r\n",
+					"# Remove the CustomerName field\r\n",
+					"transformed_df = transformed_df.drop(\"CustomerName\")\r\n",
+					"\r\n",
+					"display(transformed_df.limit(5))"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"The code above creates a new dataframe with the **CustomerName** field removed and two new **FirstName** and **LastName** fields.\r\n",
+					"\r\n",
+					"You can use the full power of the Spark SQL library to transform the data by filtering rows, deriving, removing, renaming columns, and any applying other required data modifications.\r\n",
+					"\r\n",
+					"## Save the transformed data\r\n",
+					"\r\n",
+					"After making the required changes to the data, you can save the results in a supported file format.\r\n",
+					"\r\n",
+					"> **Note**: Commonly, *Parquet* format is preferred for data files that you will use for further analysis or ingestion into an analytical store. Parquet is a very efficient format that is supported by most large scale data analytics systems. In fact, sometimes your data transformation requirement may simply be to convert data from another format (such as CSV) to Parquet!\r\n",
+					"\r\n",
+					"Use the following code to save the transformed dataframe in Parquet format (Overwriting the data if it already exists)."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"transformed_df.write.mode(\"overwrite\").parquet('/transformed_data/orders.parquet')\r\n",
+					"print (\"Transformed data saved!\")"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"In the **files** tab (which should still be open above), navigate to the root **files** container and verify that a new folder named **transformed_data** has been created, containing a file named **orders.parquet**. Then return to this notebook."
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## Partition data\n",
+					"\n",
+					"A common way to optimize performance when dealing with large volumes of data is to partition the data files based on one or more field values. This can significant improve performance and make it easier to filter data.\n",
+					"\n",
+					"Use the following cell to derive new **Year** and **Month** fields and then save the resulting data in Parquet format, partitioned by year and month."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"from pyspark.sql.functions import year, month, col\r\n",
+					"\r\n",
+					"dated_df = transformed_df.withColumn(\"Year\", year(col(\"OrderDate\"))).withColumn(\"Month\", month(col(\"OrderDate\")))\r\n",
+					"display(dated_df.limit(5))\r\n",
+					"dated_df.write.partitionBy(\"Year\",\"Month\").mode(\"overwrite\").parquet(\"/partitioned_data\")\r\n",
+					"print (\"Transformed data saved!\")"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"In the **files** tab (which should still be open above), navigate to the root **files** container and verify that a new folder named **partitioned_data** has been created, containing a hierachy of folders in the format **Year=*NNNN*** / **Month=*N***, each containing a .parquet file for the orders placed in the corresponding year and month. Then return to this notebook.\r\n",
+					"\r\n",
+					"You can read this data into a dataframe from any folder in the hierarchy, using explicit values or wildcards for partitioning fields. For example, use the following code to get the sales orders placed in 2020 for all months."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"orders_2020 = spark.read.parquet('/partitioned_data/Year=2020/Month=*')\r\n",
+					"display(orders_2020.limit(5))"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"Note that the partitioning columns specified in the file path are omitted in the resulting dataframe.\r\n",
+					"\r\n",
+					"## Use SQL to transform data\r\n",
+					"\r\n",
+					"Spark is a very flexible platform, and the **SQL** library that provides the dataframe also enables you to work with data using SQL semantics. You can query and transform data in dataframes by using SQL queries, and persist the results as tables - which are metadata abstractions over files.\r\n",
+					"\r\n",
+					"First, use the following code to save the original sales orders data (loaded from CSV files) as a table. Technically, this is an *external* table because the **path** parameter is used to specify where the data files for the table are stored (an *internal* table is stored in the system storage for the Spark metastore and managed automatically)."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"outputs_hidden": false,
+						"source_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"order_details.write.saveAsTable('sales_orders', format='parquet', mode='overwrite', path='/sales_orders_table')"
+				],
+				"execution_count": 6
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"In the **files** tab (which should still be open above), navigate to the root **files** container and verify that a new folder named **sales_orders_table** has been created, containing parquet files for the table data. Then return to this notebook.\r\n",
+					"\r\n",
+					"Now that the table has been created, you can use SQL to transform it. For example, the following code derives new Year and Month columns and then saves the results as a partitioned external table."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"sql_transform = spark.sql(\"SELECT *, YEAR(OrderDate) AS Year, MONTH(OrderDate) AS Month FROM sales_orders\")\r\n",
+					"display(sql_transform.limit(5))\r\n",
+					"sql_transform.write.partitionBy(\"Year\",\"Month\").saveAsTable('transformed_orders', format='parquet', mode='overwrite', path='/transformed_orders_table')"
+				],
+				"execution_count": 7
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"In the **files** tab (which should still be open above), navigate to the root **files** container and verify that a new folder named **transformed_orders_table** has been created, containing a hierachy of folders in the format **Year=*NNNN*** / **Month=*N***, each containing a .parquet file for the orders placed in the corresponding year and month. Then return to this notebook.\n",
+					"\n",
+					"Essentially you've performed the same data transformation into partitioned parquet files as s before, but by using SQL instead of native dataframe methods.\n",
+					"\n",
+					"You can read this data into a dataframe from any folder in the hierarchy as before, but because the data files are also abstracted by a table in the metastore, you can query the data directly using SQL."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\r\n",
+					"\r\n",
+					"SELECT * FROM transformed_orders\r\n",
+					"WHERE Year = 2021\r\n",
+					"    AND Month = 1"
+				],
+				"execution_count": 8
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"Because these are *external* tables, you can drop the tables from the metastore without deleting the files - so the transfomed data remains available for other downstream data analytics or ingestion processes."
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\r\n",
+					"\r\n",
+					"DROP TABLE transformed_orders;\r\n",
+					"DROP TABLE sales_orders;"
+				],
+				"execution_count": 9
+			}
+		]
+	}
+}
