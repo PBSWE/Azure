@@ -1,0 +1,720 @@
+{
+	"name": "Delta Lake - Static and Streaming",
+	"properties": {
+		"description": "Delta Lake - Static and Streaming queries for creation of delta lake, db, data sink and external and managed tables.",
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "sparks5vexzn",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "878b0fbf-f611-4ecf-b7f0-b8da42fd288a"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"65d032db-2999-4f4c-b224-f15a0cb1993b": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "771",
+										"1": "Mountain-100 Silver, 38",
+										"2": "Mountain Bikes",
+										"3": "3399.9900"
+									},
+									{
+										"0": "772",
+										"1": "Mountain-100 Silver, 42",
+										"2": "Mountain Bikes",
+										"3": "3399.9900"
+									},
+									{
+										"0": "773",
+										"1": "Mountain-100 Silver, 44",
+										"2": "Mountain Bikes",
+										"3": "3399.9900"
+									},
+									{
+										"0": "774",
+										"1": "Mountain-100 Silver, 48",
+										"2": "Mountain Bikes",
+										"3": "3399.9900"
+									},
+									{
+										"0": "775",
+										"1": "Mountain-100 Black, 38",
+										"2": "Mountain Bikes",
+										"3": "3374.9900"
+									},
+									{
+										"0": "776",
+										"1": "Mountain-100 Black, 42",
+										"2": "Mountain Bikes",
+										"3": "3374.9900"
+									},
+									{
+										"0": "777",
+										"1": "Mountain-100 Black, 44",
+										"2": "Mountain Bikes",
+										"3": "3374.9900"
+									},
+									{
+										"0": "778",
+										"1": "Mountain-100 Black, 48",
+										"2": "Mountain Bikes",
+										"3": "3374.9900"
+									},
+									{
+										"0": "779",
+										"1": "Mountain-200 Silver, 38",
+										"2": "Mountain Bikes",
+										"3": "2319.9900"
+									},
+									{
+										"0": "780",
+										"1": "Mountain-200 Silver, 42",
+										"2": "Mountain Bikes",
+										"3": "2319.9900"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "ProductID",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "ProductName",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "Category",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "ListPrice",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					},
+					"cc41c08b-e5f1-4961-8425-8d07e442c73d": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "Dev1",
+										"1": "ok"
+									},
+									{
+										"0": "Dev1",
+										"1": "ok"
+									},
+									{
+										"0": "Dev1",
+										"1": "ok"
+									},
+									{
+										"0": "Dev2",
+										"1": "error"
+									},
+									{
+										"0": "Dev1",
+										"1": "ok"
+									},
+									{
+										"0": "Dev1",
+										"1": "error"
+									},
+									{
+										"0": "Dev2",
+										"1": "ok"
+									},
+									{
+										"0": "Dev2",
+										"1": "error"
+									},
+									{
+										"0": "Dev1",
+										"1": "ok"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "device",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "status",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/03abaa34-9cfc-472c-908a-b70440a24cd7/resourceGroups/dp203-s5vexzn/providers/Microsoft.Synapse/workspaces/synapses5vexzn/bigDataPools/sparks5vexzn",
+				"name": "sparks5vexzn",
+				"type": "Spark",
+				"endpoint": "https://synapses5vexzn.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparks5vexzn",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.1",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://files@datalakes5vexzn.dfs.core.windows.net/products/products.csv', format='csv'\r\n",
+					"## If header exists uncomment line below\r\n",
+					", header=True\r\n",
+					")\r\n",
+					"display(df.limit(10))"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"delta_table_path = \"/delta/products-delta\"\n",
+					"df.write.format(\"delta\").save(delta_table_path)"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					" from delta.tables import *\n",
+					" from pyspark.sql.functions import *\n",
+					"\n",
+					" # Create a deltaTable object\n",
+					" deltaTable = DeltaTable.forPath(spark, delta_table_path)\n",
+					"\n",
+					" # Update the table (reduce price of product 771 by 10%)\n",
+					" deltaTable.update(\n",
+					"     condition = \"ProductID == 771\",\n",
+					"     set = { \"ListPrice\": \"ListPrice * 0.9\" })\n",
+					"\n",
+					" # View the updated data as a dataframe\n",
+					" deltaTable.toDF().show(10)\n",
+					""
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"new_df = spark.read.format(\"delta\").load(delta_table_path)\n",
+					"new_df.show(10)"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					" new_df = spark.read.format(\"delta\").option(\"versionAsOf\", 0).load(delta_table_path)\n",
+					" new_df.show(10)\n",
+					""
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"deltaTable.history(10).show(20, False, True)"
+				],
+				"execution_count": 6
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"spark.sql(\"create database AdventureWorks\")\n",
+					"spark.sql(\"create table AdventureWorks.ProductsExternal using delta location '{0}'\".format(delta_table_path))\n",
+					"spark.sql(\"describe extended AdventureWorks.ProductsExternal\").show(truncate=False)"
+				],
+				"execution_count": 11
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"use AdventureWorks;\n",
+					"\n",
+					"select * from ProductsExternal;"
+				],
+				"execution_count": 12
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df.write.format(\"delta\").saveAsTable(\"AdventureWorks.ProductsManaged\")\n",
+					"spark.sql(\"describe extended AdventureWorks.ProductsManaged\").show(truncate=False)"
+				],
+				"execution_count": 13
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"use AdventureWorks;\n",
+					"\n",
+					"select * from ProductsManaged;"
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"use AdventureWorks;\n",
+					"\n",
+					"show tables;"
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					" %%sql\n",
+					"\n",
+					" use AdventureWorks;\n",
+					"\n",
+					" drop table if exists ProductsExternal;\n",
+					" drop table if exists  ProductsManaged;\n",
+					""
+				],
+				"execution_count": 16
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					" %%sql\n",
+					"\n",
+					" USE AdventureWorks;\n",
+					"\n",
+					" CREATE TABLE Products\n",
+					" USING DELTA\n",
+					" LOCATION '/delta/products-delta';\n",
+					""
+				],
+				"execution_count": 17
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"use AdventureWorks;\n",
+					"\n",
+					"select * from Products;"
+				],
+				"execution_count": 18
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					" from notebookutils import mssparkutils\n",
+					" from pyspark.sql.types import *\n",
+					" from pyspark.sql.functions import *\n",
+					"\n",
+					" # Create a folder\n",
+					" inputPath = '/data/'\n",
+					" mssparkutils.fs.mkdirs(inputPath)\n",
+					"\n",
+					" # Create a stream that reads data from the folder, using a JSON schema\n",
+					" jsonSchema = StructType([\n",
+					" StructField(\"device\", StringType(), False),\n",
+					" StructField(\"status\", StringType(), False)\n",
+					" ])\n",
+					" iotstream = spark.readStream.schema(jsonSchema).option(\"maxFilesPerTrigger\", 1).json(inputPath)\n",
+					"\n",
+					" # Write some event data to the folder\n",
+					" device_data = '''{\"device\":\"Dev1\",\"status\":\"ok\"}\n",
+					" {\"device\":\"Dev1\",\"status\":\"ok\"}\n",
+					" {\"device\":\"Dev1\",\"status\":\"ok\"}\n",
+					" {\"device\":\"Dev2\",\"status\":\"error\"}\n",
+					" {\"device\":\"Dev1\",\"status\":\"ok\"}\n",
+					" {\"device\":\"Dev1\",\"status\":\"error\"}\n",
+					" {\"device\":\"Dev2\",\"status\":\"ok\"}\n",
+					" {\"device\":\"Dev2\",\"status\":\"error\"}\n",
+					" {\"device\":\"Dev1\",\"status\":\"ok\"}'''\n",
+					" mssparkutils.fs.put(inputPath + \"data.txt\", device_data, True)\n",
+					" print(\"Source stream created...\")\n",
+					""
+				],
+				"execution_count": 19
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					" # Write the stream to a delta table\n",
+					" delta_stream_table_path = '/delta/iotdevicedata'\n",
+					" checkpointpath = '/delta/checkpoint'\n",
+					" deltastream = iotstream.writeStream.format(\"delta\").option(\"checkpointLocation\", checkpointpath).start(delta_stream_table_path)\n",
+					" print(\"Streaming to delta sink...\")\n",
+					""
+				],
+				"execution_count": 20
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					" # Read the data in delta format into a dataframe\n",
+					" df = spark.read.format(\"delta\").load(delta_stream_table_path)\n",
+					" display(df)\n",
+					""
+				],
+				"execution_count": 21
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					" # create a catalog table based on the streaming sink\n",
+					" spark.sql(\"CREATE TABLE IotDeviceData USING DELTA LOCATION '{0}'\".format(delta_stream_table_path))\n",
+					""
+				],
+				"execution_count": 22
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\n",
+					"\n",
+					"select * from IotDeviceData;"
+				],
+				"execution_count": 23
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					" deltastream.stop()"
+				],
+				"execution_count": 24
+			}
+		]
+	}
+}
