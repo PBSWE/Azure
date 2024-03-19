@@ -1,0 +1,17 @@
+{
+	"name": "Analyze Internet Sales",
+	"properties": {
+		"content": {
+			"query": "select d.CalendarYear as Year,\n       pc.EnglishProductCategoryName as ProductCategory,\n       g.EnglishCountryRegionName as Region,\n    sum(i.SalesAmount) as InternetSalesAmount\nfrom FactInternetSales i\njoin DimDate d on i.OrderDateKey = d.DateKey\njoin DimCustomer c on i.CustomerKey = c.CustomerKey\njoin DimGeography g on c.GeographyKey = g.GeographyKey\njoin DimProduct p on i.ProductKey = p.ProductKey\njoin DimProductSubcategory ps on p.ProductSubcategoryKey = ps.ProductSubcategoryKey\njoin DimProductCategory pc on ps.ProductCategoryKey = pc.ProductCategoryKey\ngroup by d.CalendarYear, pc.EnglishProductCategoryName, g.EnglishCountryRegionName\norder by Year, ProductCategory, Region;\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "sql7124mqk",
+				"poolName": "sql7124mqk"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

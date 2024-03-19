@@ -1,0 +1,17 @@
+{
+	"name": "Solution",
+	"properties": {
+		"content": {
+			"query": "-- Items sold by Fiscal Year and Quarter\nSELECT  d.FiscalYear AS FY,\n        d.FiscalQuarter AS FQ,\n        SUM(r.OrderQuantity) AS ItemsSold\nFROM FactResellerSales AS r\nJOIN DimDate AS d ON r.OrderDateKey = d.DateKey\nGROUP BY d.FiscalYear, d.FiscalQuarter\nORDER BY FY, FQ;\n\n\n-- Items sold by Fiscal Year, Quarter, and sales territory region\nSELECT  d.FiscalYear AS FY,\n        d.FiscalQuarter AS FQ,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        SUM(r.OrderQuantity) AS ItemsSold\nFROM FactResellerSales AS r\nJOIN DimDate AS d ON r.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON r.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nGROUP BY d.FiscalYear, d.FiscalQuarter, t. SalesTerritoryRegion\nORDER BY FY, FQ, SalesTerritory\n\n\n-- Items sold by Fiscal Year, Quarter, sales territory region, and product category\nSELECT  d.FiscalYear AS FY,\n        d.FiscalQuarter AS FQ,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        pc.EnglishProductCategoryName AS ProductCategory,\n        SUM(r.OrderQuantity) AS ItemsSold\nFROM FactResellerSales AS r\nJOIN DimDate AS d ON r.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON r.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nJOIN DimProduct AS p ON r.ProductKey = p.ProductKey\nJOIN DimProductSubcategory AS ps ON p.ProductSubcategoryKey = ps.ProductSubcategoryKey\nJOIN DimProductCategory AS pc ON ps.ProductCategoryKey = pc.ProductCategoryKey\nGROUP BY d.FiscalYear, d.FiscalQuarter, t. SalesTerritoryRegion, pc.EnglishProductCategoryName\nORDER BY FY, FQ, SalesTerritory, ProductCategory\n\n\n-- Ranked sales territories by year based on total sales amount\nSELECT  d.FiscalYear,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        SUM(s.SalesAmount) AS TerritoryTotal,\n        SUM(SUM(s.SalesAmount)) OVER(PARTITION BY d.FiscalYear) AS YearTotal,\n        RANK() OVER(PARTITION BY d.FiscalYear\n                    ORDER BY SUM(s.SalesAmount) DESC) AS RankForYear\nFROM FactResellerSales AS s\nJOIN DimDate AS d ON s.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON s.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nGROUP BY d.FiscalYear, t.SalesTerritoryRegion\nORDER BY d.FiscalYear;\n\n\n-- Approximate number of sales orders per fiscal year by territory\nSELECT  d.FiscalYear,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        APPROX_COUNT_DISTINCT(s.SalesOrderNumber) AS ApproxOrders\nFROM FactResellerSales AS s\nJOIN DimDate AS d ON s.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON s.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nGROUP BY d.FiscalYear, t.SalesTerritoryRegion\nORDER BY d.FiscalYear, ApproxOrders;\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "sql7124mqk",
+				"poolName": "sql7124mqk"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
