@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "synapsexkq0jys"
+		},
+		"Data_Warehouse_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=synapsexkq0jys.sql.azuresynapse.net;Initial Catalog=sqlxkq0jys"
+		},
+		"synapse7124mqk-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapse7124mqk.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapseowbl0dp-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseowbl0dp.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapseqc6i2oh-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseqc6i2oh.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapses5vexzn-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapses5vexzn.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapseuyld2gn-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseuyld2gn.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapsexkq0jys-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapsexkq0jys.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapseyck84hl-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseyck84hl.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapse7124mqk-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://datalake7124mqk.dfs.core.windows.net"
+		},
+		"synapseowbl0dp-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://datalakeowbl0dp.dfs.core.windows.net"
+		},
+		"synapseqc6i2oh-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://datalakeqc6i2oh.dfs.core.windows.net"
+		},
+		"synapses5vexzn-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://datalakes5vexzn.dfs.core.windows.net"
+		},
+		"synapseuyld2gn-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://datalakeuyld2gn.dfs.core.windows.net"
+		},
+		"synapsexkq0jys-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://datalakexkq0jys.dfs.core.windows.net"
+		},
+		"synapseyck84hl-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://datalakeyck84hl.dfs.core.windows.net"
+		}
+	}
+}

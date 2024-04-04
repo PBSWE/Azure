@@ -1,0 +1,3173 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"type": "string",
+			"metadata": "Workspace name",
+			"defaultValue": "synapsexkq0jys"
+		},
+		"Data_Warehouse_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Data_Warehouse'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=synapsexkq0jys.sql.azuresynapse.net;Initial Catalog=sqlxkq0jys"
+		},
+		"synapse7124mqk-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'synapse7124mqk-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapse7124mqk.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapseowbl0dp-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'synapseowbl0dp-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseowbl0dp.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapseqc6i2oh-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'synapseqc6i2oh-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseqc6i2oh.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapses5vexzn-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'synapses5vexzn-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapses5vexzn.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapseuyld2gn-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'synapseuyld2gn-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseuyld2gn.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapsexkq0jys-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'synapsexkq0jys-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapsexkq0jys.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapseyck84hl-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'synapseyck84hl-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapseyck84hl.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"synapse7124mqk-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalake7124mqk.dfs.core.windows.net"
+		},
+		"synapseowbl0dp-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakeowbl0dp.dfs.core.windows.net"
+		},
+		"synapseqc6i2oh-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakeqc6i2oh.dfs.core.windows.net"
+		},
+		"synapses5vexzn-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakes5vexzn.dfs.core.windows.net"
+		},
+		"synapseuyld2gn-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakeuyld2gn.dfs.core.windows.net"
+		},
+		"synapsexkq0jys-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakexkq0jys.dfs.core.windows.net"
+		},
+		"synapseyck84hl-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakeyck84hl.dfs.core.windows.net"
+		}
+	},
+	"variables": {
+		"workspaceId": "[concat('Microsoft.Synapse/workspaces/', parameters('workspaceName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('workspaceName'), '/Load Product Data')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "LoadProducts",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "LoadProductsData",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"ProductsText": {},
+									"ProductTable": {},
+									"DimProductTable": {}
+								}
+							},
+							"staging": {
+								"linkedService": {
+									"referenceName": "synapsexkq0jys-WorkspaceDefaultStorage",
+									"type": "LinkedServiceReference"
+								},
+								"folderPath": "files/stage_products"
+							},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-04-04T22:25:07Z"
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/dataflows/LoadProductsData')]",
+				"[concat(variables('workspaceId'), '/linkedServices/synapsexkq0jys-WorkspaceDefaultStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/DimProduct')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Data_Warehouse",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [
+					{
+						"name": "ProductKey",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ProductAltKey",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ProductName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Color",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Size",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ListPrice",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "Discontinued",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DimProduct"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/Data_Warehouse')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Products_Csv')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "synapsexkq0jys-WorkspaceDefaultStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Product.csv",
+						"folderPath": "data",
+						"fileSystem": "files"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ProductID",
+						"type": "String"
+					},
+					{
+						"name": "ProductName",
+						"type": "String"
+					},
+					{
+						"name": "Color",
+						"type": "String"
+					},
+					{
+						"name": "Size",
+						"type": "String"
+					},
+					{
+						"name": "ListPrice",
+						"type": "String"
+					},
+					{
+						"name": "Discontinued",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/synapsexkq0jys-WorkspaceDefaultStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Data_Warehouse')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"description": "Dedicated SQL Pool",
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('Data_Warehouse_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapse7124mqk-WorkspaceDefaultSqlServer')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"parameters": {
+					"DBName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('synapse7124mqk-WorkspaceDefaultSqlServer_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapse7124mqk-WorkspaceDefaultStorage')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('synapse7124mqk-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapseowbl0dp-WorkspaceDefaultSqlServer')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"parameters": {
+					"DBName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('synapseowbl0dp-WorkspaceDefaultSqlServer_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapseowbl0dp-WorkspaceDefaultStorage')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('synapseowbl0dp-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapseqc6i2oh-WorkspaceDefaultSqlServer')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"parameters": {
+					"DBName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('synapseqc6i2oh-WorkspaceDefaultSqlServer_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapseqc6i2oh-WorkspaceDefaultStorage')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('synapseqc6i2oh-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapses5vexzn-WorkspaceDefaultSqlServer')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"parameters": {
+					"DBName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('synapses5vexzn-WorkspaceDefaultSqlServer_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapses5vexzn-WorkspaceDefaultStorage')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('synapses5vexzn-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapseuyld2gn-WorkspaceDefaultSqlServer')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"parameters": {
+					"DBName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('synapseuyld2gn-WorkspaceDefaultSqlServer_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapseuyld2gn-WorkspaceDefaultStorage')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('synapseuyld2gn-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapsexkq0jys-WorkspaceDefaultSqlServer')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"parameters": {
+					"DBName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('synapsexkq0jys-WorkspaceDefaultSqlServer_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapsexkq0jys-WorkspaceDefaultStorage')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('synapsexkq0jys-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapseyck84hl-WorkspaceDefaultSqlServer')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"parameters": {
+					"DBName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('synapseyck84hl-WorkspaceDefaultSqlServer_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synapseyck84hl-WorkspaceDefaultStorage')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('synapseyck84hl-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Test_Trigger')]",
+			"type": "Microsoft.Synapse/workspaces/triggers",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"description": "Test trigger",
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Load Product Data",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Hour",
+						"interval": 24,
+						"startTime": "2024-04-04T22:31:00",
+						"endTime": "2024-04-05T22:31:00",
+						"timeZone": "Pacific Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/pipelines/Load Product Data')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AutoResolveIntegrationRuntime')]",
+			"type": "Microsoft.Synapse/workspaces/integrationRuntimes",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "AutoResolve",
+						"dataFlowProperties": {
+							"computeType": "General",
+							"coreCount": 8,
+							"timeToLive": 0
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/LoadProductsData')]",
+			"type": "Microsoft.Synapse/workspaces/dataflows",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Products_Csv",
+								"type": "DatasetReference"
+							},
+							"name": "ProductsText",
+							"description": "Products text data"
+						},
+						{
+							"dataset": {
+								"referenceName": "DimProduct",
+								"type": "DatasetReference"
+							},
+							"name": "ProductTable",
+							"description": "Product table"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "DimProduct",
+								"type": "DatasetReference"
+							},
+							"name": "DimProductTable",
+							"description": "Load DimProduct table"
+						}
+					],
+					"transformations": [
+						{
+							"name": "MatchedProducts",
+							"description": "Matched product data"
+						},
+						{
+							"name": "SetLoadAction",
+							"description": "Insert new, upsert existing"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          ProductID as string,",
+						"          ProductName as string,",
+						"          Color as string,",
+						"          Size as string,",
+						"          ListPrice as decimal(10,0),",
+						"          Discontinued as boolean",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> ProductsText",
+						"source(output(",
+						"          ProductKey as integer,",
+						"          ProductAltKey as string,",
+						"          ProductName as string,",
+						"          Color as string,",
+						"          Size as string,",
+						"          ListPrice as decimal(19,4),",
+						"          Discontinued as boolean",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table',",
+						"     staged: true) ~> ProductTable",
+						"ProductsText, ProductTable lookup(ProductID == ProductAltKey,",
+						"     multiple: false,",
+						"     pickup: 'last',",
+						"     asc(ProductKey, true),",
+						"     broadcast: 'auto')~> MatchedProducts",
+						"MatchedProducts alterRow(insertIf(isNull(ProductKey)),",
+						"     upsertIf(not(isNull(ProductKey)))) ~> SetLoadAction",
+						"SetLoadAction sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          ProductKey as integer,",
+						"          ProductAltKey as string,",
+						"          ProductName as string,",
+						"          Color as string,",
+						"          Size as string,",
+						"          ListPrice as decimal(19,4),",
+						"          Discontinued as boolean",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:true,",
+						"     keys:['ProductAltKey'],",
+						"     format: 'table',",
+						"     staged: true,",
+						"     allowCopyCommand: true,",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          ProductAltKey = ProductID,",
+						"          ProductName = ProductsText@ProductName,",
+						"          Color = ProductsText@Color,",
+						"          Size = ProductsText@Size,",
+						"          ListPrice = ProductsText@ListPrice,",
+						"          Discontinued = ProductsText@Discontinued",
+						"     )) ~> DimProductTable"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/datasets/Products_Csv')]",
+				"[concat(variables('workspaceId'), '/datasets/DimProduct')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/WorkspaceSystemIdentity')]",
+			"type": "Microsoft.Synapse/workspaces/credentials",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "ManagedIdentity",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Analyze Internet Sales')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "-- Querying data warehouse tables (star and snowflake examples)\n\n-- Example of snowflake dimension and aggregate for yearly regional sales by product category:\nselect d.CalendarYear as Year,\n       pc.EnglishProductCategoryName as ProductCategory,\n       g.EnglishCountryRegionName as Region,\n    sum(i.SalesAmount) as InternetSalesAmount\nfrom FactInternetSales i\njoin DimDate d on i.OrderDateKey = d.DateKey\njoin DimCustomer c on i.CustomerKey = c.CustomerKey\njoin DimGeography g on c.GeographyKey = g.GeographyKey\njoin DimProduct p on i.ProductKey = p.ProductKey\njoin DimProductSubcategory ps on p.ProductSubcategoryKey = ps.ProductSubcategoryKey\njoin DimProductCategory pc on ps.ProductCategoryKey = pc.ProductCategoryKey\ngroup by d.CalendarYear, pc.EnglishProductCategoryName, g.EnglishCountryRegionName\norder by Year, ProductCategory, Region;\n\n\n-- Sales values for 2022 over partitions based on Region name\nselect g.EnglishCountryRegionName as Region,\n    ROW_NUMBER() over(PARTITION by g.EnglishCountryRegionName\n                        order by i.SalesAmount asc) as RowNumber,\n    i.SalesOrderNumber as OrderNo,\n    i.SalesOrderLineNumber as LineItem,\n    i.SalesAmount as SalesAmount,\n    sum(i.SalesAmount) over(PARTITION by g.EnglishCountryRegionName) as RegionTotal,\n    avg(i.SalesAmount) over(PARTITION by g.EnglishCountryRegionName) as RegionAverage\nfrom FactInternetSales i\njoin DimDate d on i.OrderDateKey = d.DateKey\njoin DimCustomer c on i.CustomerKey = c.CustomerKey\njoin DimGeography g on c.GeographyKey = g.GeographyKey\nwhere d.CalendarYear = 2022\norder by Region;\n\n\n-- Rank the Cities in each Region based on total sales amount\nselect g.EnglishCountryRegionName as Region,\n       g.City,\n       sum(i.SalesAmount) as CityTotal,\n       sum(sum(i.SalesAmount)) over(PARTITION by g.EnglishCountryRegionName) as RegionTotal,\n       rank() over(PARTITION by g.EnglishCountryRegionName\n            order by sum(i.SalesAmount) desc) as RegionalRank\nfrom FactInternetSales i\njoin DimDate d on i.OrderDateKey = d.DateKey\njoin DimCustomer c on i.CustomerKey = c.CustomerKey\njoin DimGeography g on c.GeographyKey = g.GeographyKey\ngroup by g.EnglishCountryRegionName, g.City\norder by Region;\n\n\n-- Retrieving Approximate Count for lesser time and resources at runtime\n--- Example 1: execution time of +/- 00:00:08.818\nselect d.CalendarYear as CalendarYear,\n    count(distinct i.SalesOrderNumber) as Orders\nfrom FactInternetSales i\njoin DimDate d on i.OrderDateKey = d.DateKey\ngroup by d.CalendarYear\norder by CalendarYear;\n\n--- Example 2: execution time of +/- 00:00:03.619\n--- Results should be within 2% of the actual counts\nselect d.CalendarYear as CalendarYear,\n    APPROX_COUNT_DISTINCT(i.SalesOrderNumber) as Orders\nfrom FactInternetSales i\njoin DimDate d on i.OrderDateKey = d.DateKey\ngroup by d.CalendarYear\norder by CalendarYear;",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "sql7124mqk",
+						"poolName": "sql7124mqk"
+					},
+					"resultLimit": -1
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Analyze Reseller Sales')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "-- Items sold by Fiscal Year and Quarter\nSELECT  d.FiscalYear AS FY,\n        d.FiscalQuarter AS FQ,\n        SUM(r.OrderQuantity) AS ItemsSold\nFROM FactResellerSales AS r\nJOIN DimDate AS d ON r.OrderDateKey = d.DateKey\nGROUP BY d.FiscalYear, d.FiscalQuarter\nORDER BY FY, FQ;\n\n\n-- Items sold by Fiscal Year, Quarter, and sales territory region\nSELECT  d.FiscalYear AS FY,\n        d.FiscalQuarter AS FQ,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        SUM(r.OrderQuantity) AS ItemsSold\nFROM FactResellerSales AS r\nJOIN DimDate AS d ON r.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON r.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nGROUP BY d.FiscalYear, d.FiscalQuarter, t. SalesTerritoryRegion\nORDER BY FY, FQ, SalesTerritory\n\n\n-- Items sold by Fiscal Year, Quarter, sales territory region, and product category\nSELECT  d.FiscalYear AS FY,\n        d.FiscalQuarter AS FQ,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        pc.EnglishProductCategoryName AS ProductCategory,\n        SUM(r.OrderQuantity) AS ItemsSold\nFROM FactResellerSales AS r\nJOIN DimDate AS d ON r.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON r.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nJOIN DimProduct AS p ON r.ProductKey = p.ProductKey\nJOIN DimProductSubcategory AS ps ON p.ProductSubcategoryKey = ps.ProductSubcategoryKey\nJOIN DimProductCategory AS pc ON ps.ProductCategoryKey = pc.ProductCategoryKey\nGROUP BY d.FiscalYear, d.FiscalQuarter, t. SalesTerritoryRegion, pc.EnglishProductCategoryName\nORDER BY FY, FQ, SalesTerritory, ProductCategory\n\n\n-- Ranked sales territories by year based on total sales amount\nSELECT  d.FiscalYear,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        SUM(s.SalesAmount) AS TerritoryTotal,\n        SUM(SUM(s.SalesAmount)) OVER(PARTITION BY d.FiscalYear) AS YearTotal,\n        RANK() OVER(PARTITION BY d.FiscalYear\n                    ORDER BY SUM(s.SalesAmount) DESC) AS RankForYear\nFROM FactResellerSales AS s\nJOIN DimDate AS d ON s.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON s.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nGROUP BY d.FiscalYear, t.SalesTerritoryRegion\nORDER BY d.FiscalYear;\n\n\n-- Approximate number of sales orders per fiscal year by territory\nSELECT  d.FiscalYear,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        APPROX_COUNT_DISTINCT(s.SalesOrderNumber) AS ApproxOrders\nFROM FactResellerSales AS s\nJOIN DimDate AS d ON s.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON s.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nGROUP BY d.FiscalYear, t.SalesTerritoryRegion\nORDER BY d.FiscalYear, ApproxOrders;\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "sql7124mqk",
+						"poolName": "sql7124mqk"
+					},
+					"resultLimit": -1
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Load datawarehouse tables')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": " INSERT INTO dbo.DimCustomer ([GeographyKey],[CustomerAlternateKey],[Title],[FirstName],[MiddleName],[LastName],[NameStyle],[BirthDate],[MaritalStatus],\n [Suffix],[Gender],[EmailAddress],[YearlyIncome],[TotalChildren],[NumberChildrenAtHome],[EnglishEducation],[SpanishEducation],[FrenchEducation],\n [EnglishOccupation],[SpanishOccupation],[FrenchOccupation],[HouseOwnerFlag],[NumberCarsOwned],[AddressLine1],[AddressLine2],[Phone],\n [DateFirstPurchase],[CommuteDistance])\n SELECT *\n FROM dbo.StageCustomer AS stg\n WHERE NOT EXISTS\n     (SELECT * FROM dbo.DimCustomer AS dim\n     WHERE dim.CustomerAlternateKey = stg.CustomerAlternateKey);\n\n -- Type 1 updates (change name, email, or phone in place)\n UPDATE dbo.DimCustomer\n SET LastName = stg.LastName,\n     EmailAddress = stg.EmailAddress,\n     Phone = stg.Phone\n FROM DimCustomer dim inner join StageCustomer stg\n ON dim.CustomerAlternateKey = stg.CustomerAlternateKey\n WHERE dim.LastName <> stg.LastName OR dim.EmailAddress <> stg.EmailAddress OR dim.Phone <> stg.Phone\n\n -- Type 2 updates (address changes triggers new entry)\n INSERT INTO dbo.DimCustomer\n SELECT stg.GeographyKey,stg.CustomerAlternateKey,stg.Title,stg.FirstName,stg.MiddleName,stg.LastName,stg.NameStyle,stg.BirthDate,stg.MaritalStatus,\n stg.Suffix,stg.Gender,stg.EmailAddress,stg.YearlyIncome,stg.TotalChildren,stg.NumberChildrenAtHome,stg.EnglishEducation,stg.SpanishEducation,stg.FrenchEducation,\n stg.EnglishOccupation,stg.SpanishOccupation,stg.FrenchOccupation,stg.HouseOwnerFlag,stg.NumberCarsOwned,stg.AddressLine1,stg.AddressLine2,stg.Phone,\n stg.DateFirstPurchase,stg.CommuteDistance\n FROM dbo.StageCustomer AS stg\n JOIN dbo.DimCustomer AS dim\n ON stg.CustomerAlternateKey = dim.CustomerAlternateKey\n AND stg.AddressLine1 <> dim.AddressLine1;\n\n\n-- Post Load Optimization\n -- alter index all on dbo.DimProduct rebuild; --uncomment after the UPSERT query above\n\n -- create statistics customergeo_stats on dbo.DimCustomer (GeographyKey); -- uncomment after the UPSERT query\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "sqlyck84hl",
+						"poolName": "sqlyck84hl"
+					},
+					"resultLimit": -1
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 1')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://datalakexkq0jys.dfs.core.windows.net/files/data/Product.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0'\n    ) AS [result]\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "master",
+						"poolName": "Built-in"
+					},
+					"resultLimit": -1
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Solution')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "-- Items sold by Fiscal Year and Quarter\nSELECT  d.FiscalYear AS FY,\n        d.FiscalQuarter AS FQ,\n        SUM(r.OrderQuantity) AS ItemsSold\nFROM FactResellerSales AS r\nJOIN DimDate AS d ON r.OrderDateKey = d.DateKey\nGROUP BY d.FiscalYear, d.FiscalQuarter\nORDER BY FY, FQ;\n\n\n-- Items sold by Fiscal Year, Quarter, and sales territory region\nSELECT  d.FiscalYear AS FY,\n        d.FiscalQuarter AS FQ,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        SUM(r.OrderQuantity) AS ItemsSold\nFROM FactResellerSales AS r\nJOIN DimDate AS d ON r.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON r.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nGROUP BY d.FiscalYear, d.FiscalQuarter, t. SalesTerritoryRegion\nORDER BY FY, FQ, SalesTerritory\n\n\n-- Items sold by Fiscal Year, Quarter, sales territory region, and product category\nSELECT  d.FiscalYear AS FY,\n        d.FiscalQuarter AS FQ,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        pc.EnglishProductCategoryName AS ProductCategory,\n        SUM(r.OrderQuantity) AS ItemsSold\nFROM FactResellerSales AS r\nJOIN DimDate AS d ON r.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON r.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nJOIN DimProduct AS p ON r.ProductKey = p.ProductKey\nJOIN DimProductSubcategory AS ps ON p.ProductSubcategoryKey = ps.ProductSubcategoryKey\nJOIN DimProductCategory AS pc ON ps.ProductCategoryKey = pc.ProductCategoryKey\nGROUP BY d.FiscalYear, d.FiscalQuarter, t. SalesTerritoryRegion, pc.EnglishProductCategoryName\nORDER BY FY, FQ, SalesTerritory, ProductCategory\n\n\n-- Ranked sales territories by year based on total sales amount\nSELECT  d.FiscalYear,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        SUM(s.SalesAmount) AS TerritoryTotal,\n        SUM(SUM(s.SalesAmount)) OVER(PARTITION BY d.FiscalYear) AS YearTotal,\n        RANK() OVER(PARTITION BY d.FiscalYear\n                    ORDER BY SUM(s.SalesAmount) DESC) AS RankForYear\nFROM FactResellerSales AS s\nJOIN DimDate AS d ON s.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON s.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nGROUP BY d.FiscalYear, t.SalesTerritoryRegion\nORDER BY d.FiscalYear;\n\n\n-- Approximate number of sales orders per fiscal year by territory\nSELECT  d.FiscalYear,\n        t. SalesTerritoryRegion AS SalesTerritory,\n        APPROX_COUNT_DISTINCT(s.SalesOrderNumber) AS ApproxOrders\nFROM FactResellerSales AS s\nJOIN DimDate AS d ON s.OrderDateKey = d.DateKey\nJOIN DimEmployee AS e ON s.EmployeeKey = e.EmployeeKey\nJOIN DimSalesTerritory AS t ON e.SalesTerritoryKey = t.SalesTerritoryKey\nGROUP BY d.FiscalYear, t.SalesTerritoryRegion\nORDER BY d.FiscalYear, ApproxOrders;\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "sql7124mqk",
+						"poolName": "sql7124mqk"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Apache Spark Visualizations')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"description": "Using matplotlib and seaborn for df visuals.",
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "sparkuyld2gn",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "3ff7df55-03d7-4617-9be4-13fc147d0e6e"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/03abaa34-9cfc-472c-908a-b70440a24cd7/resourceGroups/dp500-uyld2gn/providers/Microsoft.Synapse/workspaces/synapseuyld2gn/bigDataPools/sparkuyld2gn",
+						"name": "sparkuyld2gn",
+						"type": "Spark",
+						"endpoint": "https://synapseuyld2gn.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkuyld2gn",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.1",
+						"nodeCount": 3,
+						"cores": 4,
+						"memory": 28
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"microsoft": {
+								"language": "python"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%pyspark\r\n",
+							"from pyspark.sql.types import *\r\n",
+							"from pyspark.sql.functions import *\r\n",
+							"\r\n",
+							"orderSchema = StructType([\r\n",
+							"     StructField(\"SalesOrderNumber\", StringType()),\r\n",
+							"     StructField(\"SalesOrderLineNumber\", IntegerType()),\r\n",
+							"     StructField(\"OrderDate\", DateType()),\r\n",
+							"     StructField(\"CustomerName\", StringType()),\r\n",
+							"     StructField(\"Email\", StringType()),\r\n",
+							"     StructField(\"Item\", StringType()),\r\n",
+							"     StructField(\"Quantity\", IntegerType()),\r\n",
+							"     StructField(\"UnitPrice\", FloatType()),\r\n",
+							"     StructField(\"Tax\", FloatType())\r\n",
+							"    ])\r\n",
+							"\r\n",
+							"\r\n",
+							"df = spark.read.load('abfss://files@datalakeuyld2gn.dfs.core.windows.net/sales/orders/2021.csv', format='csv', schema=orderSchema\r\n",
+							"##, header=True\r\n",
+							")\r\n",
+							"display(df.limit(100))"
+						],
+						"outputs": [],
+						"execution_count": 39
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"df.printSchema()"
+						],
+						"outputs": [],
+						"execution_count": 40
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"customers = df.select('CustomerName', 'Email').where(df['Item']=='Road-250 Red, 52')\n",
+							"print(customers.count())\n",
+							"print(customers.distinct().count())\n",
+							"display(customers.distinct())"
+						],
+						"outputs": [],
+						"execution_count": 41
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"productSales = df.select(\"Item\", \"Quantity\").groupBy(\"Item\").sum()\n",
+							"display(productSales)"
+						],
+						"outputs": [],
+						"execution_count": 42
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"yearlySales = df.select(year(\"OrderDate\").alias(\"Year\")).groupby(\"Year\").count().orderBy(\"Year\")\n",
+							"display(yearlySales)\n",
+							"\n",
+							"\n",
+							"'''  \n",
+							"Run the code cell you added, and note that the results show the number of sales orders per year.    /n\n",
+							"Note that the select method includes a SQL year function to extract the year component of           /n\n",
+							"the OrderDate field, and then an alias method is used to assign a columm name to the extracted      /n\n",
+							"year value. The data is then grouped by the derived Year column and the count of rows in each       /n\n",
+							"group is calculated before finally the orderBy method is used to sort the resulting dataframe.\n",
+							"'''"
+						],
+						"outputs": [],
+						"execution_count": 43
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"df.createOrReplaceTempView(\"salesorders\")\n",
+							"spark_df = spark.sql(\"select * from salesorders\")\n",
+							"display(spark_df)"
+						],
+						"outputs": [],
+						"execution_count": 44
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\n",
+							"select year(OrderDate) as OrderYear,\n",
+							"    sum((UnitPrice * Quantity) + Tax) as GrossRevenue\n",
+							"from salesorders\n",
+							"group by year(OrderDate)\n",
+							"order by OrderYear;"
+						],
+						"outputs": [],
+						"execution_count": 45
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\n",
+							"\n",
+							"select * from salesorders"
+						],
+						"outputs": [],
+						"execution_count": 46
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" sqlQuery = \"SELECT CAST(YEAR(OrderDate) AS CHAR(4)) AS OrderYear, \\\n",
+							"                 SUM((UnitPrice * Quantity) + Tax) AS GrossRevenue \\\n",
+							"             FROM salesorders \\\n",
+							"             GROUP BY CAST(YEAR(OrderDate) AS CHAR(4)) \\\n",
+							"             ORDER BY OrderYear\"\n",
+							" df_spark = spark.sql(sqlQuery)\n",
+							" df_spark.show()\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 47
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"from matplotlib import pyplot as plt\n",
+							"\n",
+							"df_sales = df_spark.toPandas()\n",
+							"\n",
+							"plt.bar(x=df_sales['OrderYear'], height=df_sales['GrossRevenue'])\n",
+							"\n",
+							"plt.show()"
+						],
+						"outputs": [],
+						"execution_count": 48
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" # Clear the plot area\n",
+							" plt.clf()\n",
+							"\n",
+							" # Create a bar plot of revenue by year\n",
+							" plt.bar(x=df_sales['OrderYear'], height=df_sales['GrossRevenue'], color='orange')\n",
+							"\n",
+							" # Customize the chart\n",
+							" plt.title('Revenue by Year')\n",
+							" plt.xlabel('Year')\n",
+							" plt.ylabel('Revenue')\n",
+							" plt.grid(color='#95a5a6', linestyle='--', linewidth=2, axis='y', alpha=0.7)\n",
+							" plt.xticks(rotation=45)\n",
+							"\n",
+							" # Show the figure\n",
+							" plt.show()\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 49
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" # Clear the plot area\n",
+							" plt.clf()\n",
+							"\n",
+							" # Create a Figure\n",
+							" fig = plt.figure(figsize=(8,3))\n",
+							"\n",
+							" # Create a bar plot of revenue by year\n",
+							" plt.bar(x=df_sales['OrderYear'], height=df_sales['GrossRevenue'], color='orange')\n",
+							"\n",
+							" # Customize the chart\n",
+							" plt.title('Revenue by Year')\n",
+							" plt.xlabel('Year')\n",
+							" plt.ylabel('Revenue')\n",
+							" plt.grid(color='#95a5a6', linestyle='--', linewidth=2, axis='y', alpha=0.7)\n",
+							" plt.xticks(rotation=45)\n",
+							"\n",
+							" # Show the figure\n",
+							" plt.show()\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 50
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" # Clear the plot area\n",
+							" plt.clf()\n",
+							"\n",
+							" # Create a figure for 2 subplots (1 row, 2 columns)\n",
+							" fig, ax = plt.subplots(1, 2, figsize = (10,4))\n",
+							"\n",
+							" # Create a bar plot of revenue by year on the first axis\n",
+							" ax[0].bar(x=df_sales['OrderYear'], height=df_sales['GrossRevenue'], color='orange')\n",
+							" ax[0].set_title('Revenue by Year')\n",
+							"\n",
+							" # Create a pie chart of yearly order counts on the second axis\n",
+							" yearly_counts = df_sales['OrderYear'].value_counts()\n",
+							" ax[1].pie(yearly_counts)\n",
+							" ax[1].set_title('Orders per Year')\n",
+							" ax[1].legend(yearly_counts.keys().tolist())\n",
+							"\n",
+							" # Add a title to the Figure\n",
+							" fig.suptitle('Sales Data')\n",
+							"\n",
+							" # Show the figure\n",
+							" plt.show()\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 51
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" import seaborn as sns\n",
+							"\n",
+							" # Clear the plot area\n",
+							" plt.clf()\n",
+							"\n",
+							" # Create a bar chart\n",
+							" ax = sns.barplot(x=\"OrderYear\", y=\"GrossRevenue\", data=df_sales)\n",
+							" plt.show()\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 52
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" # Clear the plot area\n",
+							" plt.clf()\n",
+							"\n",
+							" # Set the visual theme for seaborn\n",
+							" sns.set_theme(style=\"whitegrid\")\n",
+							"\n",
+							" # Create a bar chart\n",
+							" ax = sns.barplot(x=\"OrderYear\", y=\"GrossRevenue\", data=df_sales)\n",
+							" plt.show()\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 53
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" # Clear the plot area\n",
+							" plt.clf()\n",
+							"\n",
+							" # Create a bar chart\n",
+							" ax = sns.lineplot(x=\"OrderYear\", y=\"GrossRevenue\", data=df_sales)\n",
+							" plt.show()\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 54
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							""
+						],
+						"outputs": [],
+						"execution_count": null
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Delta Lake - Static and Streaming')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"description": "Delta Lake - Static and Streaming queries for creation of delta lake, db, data sink and external and managed tables.",
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "sparks5vexzn",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "878b0fbf-f611-4ecf-b7f0-b8da42fd288a"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1",
+						"state": {
+							"65d032db-2999-4f4c-b224-f15a0cb1993b": {
+								"type": "Synapse.DataFrame",
+								"sync_state": {
+									"table": {
+										"rows": [
+											{
+												"0": "771",
+												"1": "Mountain-100 Silver, 38",
+												"2": "Mountain Bikes",
+												"3": "3399.9900"
+											},
+											{
+												"0": "772",
+												"1": "Mountain-100 Silver, 42",
+												"2": "Mountain Bikes",
+												"3": "3399.9900"
+											},
+											{
+												"0": "773",
+												"1": "Mountain-100 Silver, 44",
+												"2": "Mountain Bikes",
+												"3": "3399.9900"
+											},
+											{
+												"0": "774",
+												"1": "Mountain-100 Silver, 48",
+												"2": "Mountain Bikes",
+												"3": "3399.9900"
+											},
+											{
+												"0": "775",
+												"1": "Mountain-100 Black, 38",
+												"2": "Mountain Bikes",
+												"3": "3374.9900"
+											},
+											{
+												"0": "776",
+												"1": "Mountain-100 Black, 42",
+												"2": "Mountain Bikes",
+												"3": "3374.9900"
+											},
+											{
+												"0": "777",
+												"1": "Mountain-100 Black, 44",
+												"2": "Mountain Bikes",
+												"3": "3374.9900"
+											},
+											{
+												"0": "778",
+												"1": "Mountain-100 Black, 48",
+												"2": "Mountain Bikes",
+												"3": "3374.9900"
+											},
+											{
+												"0": "779",
+												"1": "Mountain-200 Silver, 38",
+												"2": "Mountain Bikes",
+												"3": "2319.9900"
+											},
+											{
+												"0": "780",
+												"1": "Mountain-200 Silver, 42",
+												"2": "Mountain Bikes",
+												"3": "2319.9900"
+											}
+										],
+										"schema": [
+											{
+												"key": "0",
+												"name": "ProductID",
+												"type": "string"
+											},
+											{
+												"key": "1",
+												"name": "ProductName",
+												"type": "string"
+											},
+											{
+												"key": "2",
+												"name": "Category",
+												"type": "string"
+											},
+											{
+												"key": "3",
+												"name": "ListPrice",
+												"type": "string"
+											}
+										],
+										"truncated": false
+									},
+									"isSummary": false,
+									"language": "scala"
+								},
+								"persist_state": {
+									"view": {
+										"type": "details",
+										"chartOptions": {
+											"chartType": "bar",
+											"aggregationType": "count",
+											"categoryFieldKeys": [
+												"0"
+											],
+											"seriesFieldKeys": [
+												"0"
+											],
+											"isStacked": false
+										}
+									}
+								}
+							},
+							"cc41c08b-e5f1-4961-8425-8d07e442c73d": {
+								"type": "Synapse.DataFrame",
+								"sync_state": {
+									"table": {
+										"rows": [
+											{
+												"0": "Dev1",
+												"1": "ok"
+											},
+											{
+												"0": "Dev1",
+												"1": "ok"
+											},
+											{
+												"0": "Dev1",
+												"1": "ok"
+											},
+											{
+												"0": "Dev2",
+												"1": "error"
+											},
+											{
+												"0": "Dev1",
+												"1": "ok"
+											},
+											{
+												"0": "Dev1",
+												"1": "error"
+											},
+											{
+												"0": "Dev2",
+												"1": "ok"
+											},
+											{
+												"0": "Dev2",
+												"1": "error"
+											},
+											{
+												"0": "Dev1",
+												"1": "ok"
+											}
+										],
+										"schema": [
+											{
+												"key": "0",
+												"name": "device",
+												"type": "string"
+											},
+											{
+												"key": "1",
+												"name": "status",
+												"type": "string"
+											}
+										],
+										"truncated": false
+									},
+									"isSummary": false,
+									"language": "scala"
+								},
+								"persist_state": {
+									"view": {
+										"type": "details",
+										"chartOptions": {
+											"chartType": "bar",
+											"aggregationType": "count",
+											"categoryFieldKeys": [
+												"0"
+											],
+											"seriesFieldKeys": [
+												"0"
+											],
+											"isStacked": false
+										}
+									}
+								}
+							}
+						}
+					},
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/03abaa34-9cfc-472c-908a-b70440a24cd7/resourceGroups/dp203-s5vexzn/providers/Microsoft.Synapse/workspaces/synapses5vexzn/bigDataPools/sparks5vexzn",
+						"name": "sparks5vexzn",
+						"type": "Spark",
+						"endpoint": "https://synapses5vexzn.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparks5vexzn",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net",
+							"authHeader": null
+						},
+						"sparkVersion": "3.1",
+						"nodeCount": 3,
+						"cores": 4,
+						"memory": 28,
+						"extraHeader": null
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"microsoft": {
+								"language": "python"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%pyspark\r\n",
+							"df = spark.read.load('abfss://files@datalakes5vexzn.dfs.core.windows.net/products/products.csv', format='csv'\r\n",
+							"## If header exists uncomment line below\r\n",
+							", header=True\r\n",
+							")\r\n",
+							"display(df.limit(10))"
+						],
+						"outputs": [],
+						"execution_count": 1
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"delta_table_path = \"/delta/products-delta\"\n",
+							"df.write.format(\"delta\").save(delta_table_path)"
+						],
+						"outputs": [],
+						"execution_count": 2
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" from delta.tables import *\n",
+							" from pyspark.sql.functions import *\n",
+							"\n",
+							" # Create a deltaTable object\n",
+							" deltaTable = DeltaTable.forPath(spark, delta_table_path)\n",
+							"\n",
+							" # Update the table (reduce price of product 771 by 10%)\n",
+							" deltaTable.update(\n",
+							"     condition = \"ProductID == 771\",\n",
+							"     set = { \"ListPrice\": \"ListPrice * 0.9\" })\n",
+							"\n",
+							" # View the updated data as a dataframe\n",
+							" deltaTable.toDF().show(10)\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 3
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"new_df = spark.read.format(\"delta\").load(delta_table_path)\n",
+							"new_df.show(10)"
+						],
+						"outputs": [],
+						"execution_count": 4
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" new_df = spark.read.format(\"delta\").option(\"versionAsOf\", 0).load(delta_table_path)\n",
+							" new_df.show(10)\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 5
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"deltaTable.history(10).show(20, False, True)"
+						],
+						"outputs": [],
+						"execution_count": 6
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"spark.sql(\"create database AdventureWorks\")\n",
+							"spark.sql(\"create table AdventureWorks.ProductsExternal using delta location '{0}'\".format(delta_table_path))\n",
+							"spark.sql(\"describe extended AdventureWorks.ProductsExternal\").show(truncate=False)"
+						],
+						"outputs": [],
+						"execution_count": 11
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\n",
+							"use AdventureWorks;\n",
+							"\n",
+							"select * from ProductsExternal;"
+						],
+						"outputs": [],
+						"execution_count": 12
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"df.write.format(\"delta\").saveAsTable(\"AdventureWorks.ProductsManaged\")\n",
+							"spark.sql(\"describe extended AdventureWorks.ProductsManaged\").show(truncate=False)"
+						],
+						"outputs": [],
+						"execution_count": 13
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\n",
+							"use AdventureWorks;\n",
+							"\n",
+							"select * from ProductsManaged;"
+						],
+						"outputs": [],
+						"execution_count": 14
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\n",
+							"use AdventureWorks;\n",
+							"\n",
+							"show tables;"
+						],
+						"outputs": [],
+						"execution_count": 15
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							" %%sql\n",
+							"\n",
+							" use AdventureWorks;\n",
+							"\n",
+							" drop table if exists ProductsExternal;\n",
+							" drop table if exists  ProductsManaged;\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 16
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							" %%sql\n",
+							"\n",
+							" USE AdventureWorks;\n",
+							"\n",
+							" CREATE TABLE Products\n",
+							" USING DELTA\n",
+							" LOCATION '/delta/products-delta';\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 17
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\n",
+							"use AdventureWorks;\n",
+							"\n",
+							"select * from Products;"
+						],
+						"outputs": [],
+						"execution_count": 18
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" from notebookutils import mssparkutils\n",
+							" from pyspark.sql.types import *\n",
+							" from pyspark.sql.functions import *\n",
+							"\n",
+							" # Create a folder\n",
+							" inputPath = '/data/'\n",
+							" mssparkutils.fs.mkdirs(inputPath)\n",
+							"\n",
+							" # Create a stream that reads data from the folder, using a JSON schema\n",
+							" jsonSchema = StructType([\n",
+							" StructField(\"device\", StringType(), False),\n",
+							" StructField(\"status\", StringType(), False)\n",
+							" ])\n",
+							" iotstream = spark.readStream.schema(jsonSchema).option(\"maxFilesPerTrigger\", 1).json(inputPath)\n",
+							"\n",
+							" # Write some event data to the folder\n",
+							" device_data = '''{\"device\":\"Dev1\",\"status\":\"ok\"}\n",
+							" {\"device\":\"Dev1\",\"status\":\"ok\"}\n",
+							" {\"device\":\"Dev1\",\"status\":\"ok\"}\n",
+							" {\"device\":\"Dev2\",\"status\":\"error\"}\n",
+							" {\"device\":\"Dev1\",\"status\":\"ok\"}\n",
+							" {\"device\":\"Dev1\",\"status\":\"error\"}\n",
+							" {\"device\":\"Dev2\",\"status\":\"ok\"}\n",
+							" {\"device\":\"Dev2\",\"status\":\"error\"}\n",
+							" {\"device\":\"Dev1\",\"status\":\"ok\"}'''\n",
+							" mssparkutils.fs.put(inputPath + \"data.txt\", device_data, True)\n",
+							" print(\"Source stream created...\")\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 19
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" # Write the stream to a delta table\n",
+							" delta_stream_table_path = '/delta/iotdevicedata'\n",
+							" checkpointpath = '/delta/checkpoint'\n",
+							" deltastream = iotstream.writeStream.format(\"delta\").option(\"checkpointLocation\", checkpointpath).start(delta_stream_table_path)\n",
+							" print(\"Streaming to delta sink...\")\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 20
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							" # Read the data in delta format into a dataframe\n",
+							" df = spark.read.format(\"delta\").load(delta_stream_table_path)\n",
+							" display(df)\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 21
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" # create a catalog table based on the streaming sink\n",
+							" spark.sql(\"CREATE TABLE IotDeviceData USING DELTA LOCATION '{0}'\".format(delta_stream_table_path))\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 22
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\n",
+							"\n",
+							"select * from IotDeviceData;"
+						],
+						"outputs": [],
+						"execution_count": 23
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							" deltastream.stop()"
+						],
+						"outputs": [],
+						"execution_count": 24
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Spark Transform')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "sparkqc6i2oh",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "b3f267a4-f3fa-4650-89e9-7b2192520449"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/03abaa34-9cfc-472c-908a-b70440a24cd7/resourceGroups/dp203-qc6i2oh/providers/Microsoft.Synapse/workspaces/synapseqc6i2oh/bigDataPools/sparkqc6i2oh",
+						"name": "sparkqc6i2oh",
+						"type": "Spark",
+						"endpoint": "https://synapseqc6i2oh.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkqc6i2oh",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.2",
+						"nodeCount": 3,
+						"cores": 4,
+						"memory": 28
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "markdown",
+						"source": [
+							"# Transform data by using Spark\n",
+							"\n",
+							"Apache Spark provides a distributed data processing platform that you can use to perform complex data transformations at scale.\n",
+							"\n",
+							"\n",
+							"## Load source data\n",
+							"\n",
+							"Let's start by loading some historical sales order data into a dataframe.\n",
+							"\n",
+							"Review the code in the cell below, which loads the sales order from all of the csv files within the **data** directory. Then click the **&#9655;** button to the left of the cell to run it.\n",
+							"\n",
+							"> **Note**: The first time you run a cell in a notebook, the Spark pool must be started; which can take several minutes."
+						]
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"collapsed": false
+						},
+						"source": [
+							"order_details = spark.read.csv('/data/*.csv', header=True, inferSchema=True)\n",
+							"display(order_details.limit(5))"
+						],
+						"outputs": [],
+						"execution_count": 1
+					},
+					{
+						"cell_type": "markdown",
+						"metadata": {
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"## Transform the data structure\r\n",
+							"\r\n",
+							"The source data includes a **CustomerName** field, that contains the customer's first and last name. Let's modify the dataframe to separate this field into separate **FirstName** and **LastName** fields."
+						]
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"from pyspark.sql.functions import split, col\r\n",
+							"\r\n",
+							"# Create the new FirstName and LastName fields\r\n",
+							"transformed_df = order_details.withColumn(\"FirstName\", split(col(\"CustomerName\"), \" \").getItem(0)).withColumn(\"LastName\", split(col(\"CustomerName\"), \" \").getItem(1))\r\n",
+							"\r\n",
+							"# Remove the CustomerName field\r\n",
+							"transformed_df = transformed_df.drop(\"CustomerName\")\r\n",
+							"\r\n",
+							"display(transformed_df.limit(5))"
+						],
+						"outputs": [],
+						"execution_count": 2
+					},
+					{
+						"cell_type": "markdown",
+						"metadata": {
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"The code above creates a new dataframe with the **CustomerName** field removed and two new **FirstName** and **LastName** fields.\r\n",
+							"\r\n",
+							"You can use the full power of the Spark SQL library to transform the data by filtering rows, deriving, removing, renaming columns, and any applying other required data modifications.\r\n",
+							"\r\n",
+							"## Save the transformed data\r\n",
+							"\r\n",
+							"After making the required changes to the data, you can save the results in a supported file format.\r\n",
+							"\r\n",
+							"> **Note**: Commonly, *Parquet* format is preferred for data files that you will use for further analysis or ingestion into an analytical store. Parquet is a very efficient format that is supported by most large scale data analytics systems. In fact, sometimes your data transformation requirement may simply be to convert data from another format (such as CSV) to Parquet!\r\n",
+							"\r\n",
+							"Use the following code to save the transformed dataframe in Parquet format (Overwriting the data if it already exists)."
+						]
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"transformed_df.write.mode(\"overwrite\").parquet('/transformed_data/orders.parquet')\r\n",
+							"print (\"Transformed data saved!\")"
+						],
+						"outputs": [],
+						"execution_count": 3
+					},
+					{
+						"cell_type": "markdown",
+						"metadata": {
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"In the **files** tab (which should still be open above), navigate to the root **files** container and verify that a new folder named **transformed_data** has been created, containing a file named **orders.parquet**. Then return to this notebook."
+						]
+					},
+					{
+						"cell_type": "markdown",
+						"metadata": {
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"## Partition data\n",
+							"\n",
+							"A common way to optimize performance when dealing with large volumes of data is to partition the data files based on one or more field values. This can significant improve performance and make it easier to filter data.\n",
+							"\n",
+							"Use the following cell to derive new **Year** and **Month** fields and then save the resulting data in Parquet format, partitioned by year and month."
+						]
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"from pyspark.sql.functions import year, month, col\r\n",
+							"\r\n",
+							"dated_df = transformed_df.withColumn(\"Year\", year(col(\"OrderDate\"))).withColumn(\"Month\", month(col(\"OrderDate\")))\r\n",
+							"display(dated_df.limit(5))\r\n",
+							"dated_df.write.partitionBy(\"Year\",\"Month\").mode(\"overwrite\").parquet(\"/partitioned_data\")\r\n",
+							"print (\"Transformed data saved!\")"
+						],
+						"outputs": [],
+						"execution_count": 4
+					},
+					{
+						"cell_type": "markdown",
+						"metadata": {
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"In the **files** tab (which should still be open above), navigate to the root **files** container and verify that a new folder named **partitioned_data** has been created, containing a hierachy of folders in the format **Year=*NNNN*** / **Month=*N***, each containing a .parquet file for the orders placed in the corresponding year and month. Then return to this notebook.\r\n",
+							"\r\n",
+							"You can read this data into a dataframe from any folder in the hierarchy, using explicit values or wildcards for partitioning fields. For example, use the following code to get the sales orders placed in 2020 for all months."
+						]
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"orders_2020 = spark.read.parquet('/partitioned_data/Year=2020/Month=*')\r\n",
+							"display(orders_2020.limit(5))"
+						],
+						"outputs": [],
+						"execution_count": 5
+					},
+					{
+						"cell_type": "markdown",
+						"metadata": {
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"Note that the partitioning columns specified in the file path are omitted in the resulting dataframe.\r\n",
+							"\r\n",
+							"## Use SQL to transform data\r\n",
+							"\r\n",
+							"Spark is a very flexible platform, and the **SQL** library that provides the dataframe also enables you to work with data using SQL semantics. You can query and transform data in dataframes by using SQL queries, and persist the results as tables - which are metadata abstractions over files.\r\n",
+							"\r\n",
+							"First, use the following code to save the original sales orders data (loaded from CSV files) as a table. Technically, this is an *external* table because the **path** parameter is used to specify where the data files for the table are stored (an *internal* table is stored in the system storage for the Spark metastore and managed automatically)."
+						]
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"outputs_hidden": false,
+								"source_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"order_details.write.saveAsTable('sales_orders', format='parquet', mode='overwrite', path='/sales_orders_table')"
+						],
+						"outputs": [],
+						"execution_count": 6
+					},
+					{
+						"cell_type": "markdown",
+						"metadata": {
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"In the **files** tab (which should still be open above), navigate to the root **files** container and verify that a new folder named **sales_orders_table** has been created, containing parquet files for the table data. Then return to this notebook.\r\n",
+							"\r\n",
+							"Now that the table has been created, you can use SQL to transform it. For example, the following code derives new Year and Month columns and then saves the results as a partitioned external table."
+						]
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"sql_transform = spark.sql(\"SELECT *, YEAR(OrderDate) AS Year, MONTH(OrderDate) AS Month FROM sales_orders\")\r\n",
+							"display(sql_transform.limit(5))\r\n",
+							"sql_transform.write.partitionBy(\"Year\",\"Month\").saveAsTable('transformed_orders', format='parquet', mode='overwrite', path='/transformed_orders_table')"
+						],
+						"outputs": [],
+						"execution_count": 7
+					},
+					{
+						"cell_type": "markdown",
+						"source": [
+							"In the **files** tab (which should still be open above), navigate to the root **files** container and verify that a new folder named **transformed_orders_table** has been created, containing a hierachy of folders in the format **Year=*NNNN*** / **Month=*N***, each containing a .parquet file for the orders placed in the corresponding year and month. Then return to this notebook.\n",
+							"\n",
+							"Essentially you've performed the same data transformation into partitioned parquet files as s before, but by using SQL instead of native dataframe methods.\n",
+							"\n",
+							"You can read this data into a dataframe from any folder in the hierarchy as before, but because the data files are also abstracted by a table in the metastore, you can query the data directly using SQL."
+						]
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\r\n",
+							"\r\n",
+							"SELECT * FROM transformed_orders\r\n",
+							"WHERE Year = 2021\r\n",
+							"    AND Month = 1"
+						],
+						"outputs": [],
+						"execution_count": 8
+					},
+					{
+						"cell_type": "markdown",
+						"metadata": {
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"Because these are *external* tables, you can drop the tables from the metastore without deleting the files - so the transfomed data remains available for other downstream data analytics or ingestion processes."
+						]
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\r\n",
+							"\r\n",
+							"DROP TABLE transformed_orders;\r\n",
+							"DROP TABLE sales_orders;"
+						],
+						"outputs": [],
+						"execution_count": 9
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/RetailDB')]",
+			"type": "Microsoft.Synapse/workspaces/databases",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"Ddls": [
+					{
+						"ActionType": "CREATE",
+						"OldEntity": null,
+						"NewEntity": {
+							"Name": "RetailDB",
+							"EntityType": "DATABASE",
+							"Origin": {
+								"Type": "SPARK"
+							},
+							"Properties": {
+								"IsSyMSCDMDatabase": true,
+								"DerivedModelDBInfo": "{\"ModelDirectives\":{\"BaseModel\":{\"Name\":\"Retail\",\"Version\":\"1.3.0\"}}}"
+							},
+							"Source": {
+								"Provider": "ADLS",
+								"Location": "abfss://files@datalakeowbl0dp.dfs.core.windows.net/RetailDB",
+								"Properties": {
+									"FormatType": "csv",
+									"LinkedServiceName": "synapseowbl0dp-WorkspaceDefaultStorage"
+								}
+							},
+							"PublishStatus": "PUBLISHED",
+							"ObjectVersion": 5,
+							"ObjectId": "a77a9b7a-219d-43f6-ac0f-e95db3c27854"
+						},
+						"Source": {
+							"Type": "SPARK"
+						}
+					},
+					{
+						"ActionType": "CREATE",
+						"OldEntity": null,
+						"NewEntity": {
+							"Name": "Customer",
+							"EntityType": "TABLE",
+							"TableType": "EXTERNAL",
+							"Namespace": {
+								"SchemaName": null,
+								"DatabaseName": "RetailDB",
+								"DatabaseId": null
+							},
+							"Partitioning": {
+								"PartitionFunctionType": null,
+								"Keys": null
+							},
+							"StorageDescriptor": {
+								"Distribution": null,
+								"Columns": [
+									{
+										"Name": "CustomerId",
+										"Description": "Unique customer ID",
+										"OriginDataTypeName": {
+											"TypeName": "long",
+											"IsComplexType": false,
+											"IsNullable": false,
+											"Length": 0,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "long"
+											}
+										}
+									},
+									{
+										"Name": "FirstName",
+										"Description": "Customer first name",
+										"OriginDataTypeName": {
+											"TypeName": "string",
+											"IsComplexType": false,
+											"IsNullable": false,
+											"Length": 256,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "string"
+											}
+										}
+									},
+									{
+										"Name": "LastName",
+										"Description": "Customer last name",
+										"OriginDataTypeName": {
+											"TypeName": "string",
+											"IsComplexType": false,
+											"IsNullable": false,
+											"Length": 256,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "string"
+											}
+										}
+									},
+									{
+										"Name": "EmailAddress",
+										"Description": "Customer email",
+										"OriginDataTypeName": {
+											"TypeName": "string",
+											"IsComplexType": false,
+											"IsNullable": false,
+											"Length": 256,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "string"
+											}
+										}
+									},
+									{
+										"Name": "Phone",
+										"Description": "Customer phone",
+										"OriginDataTypeName": {
+											"TypeName": "string",
+											"IsComplexType": false,
+											"IsNullable": false,
+											"Length": 256,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "string"
+											}
+										}
+									}
+								],
+								"ColumnSetEntityName": "28f3ec41-9187-4d54-bf9a-4ec2e12be03d",
+								"Format": {
+									"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+									"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+									"FormatType": "csv",
+									"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+									"Properties": {
+										"path": "abfss://files@datalakeowbl0dp.dfs.core.windows.net/RetailDB/Customer",
+										"delimiter": ",",
+										"firstRowAsHeader": "false",
+										"multiLine": "false",
+										"serialization.format": "1",
+										"escape": "\\",
+										"quote": "\"",
+										"FormatTypeSetToDatabaseDefault": true,
+										"header": "false"
+									}
+								},
+								"Source": {
+									"Provider": "ADLS",
+									"Location": "abfss://files@datalakeowbl0dp.dfs.core.windows.net/RetailDB/Customer",
+									"Properties": {
+										"LinkedServiceName": "synapseowbl0dp-WorkspaceDefaultStorage",
+										"LocationSetToDatabaseDefault": true
+									}
+								},
+								"Properties": {
+									"textinputformat.record.delimiter": ",",
+									"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+									"derivedModelAttributeInfo": "{\"attributeReferences\":{}}"
+								},
+								"Compressed": false,
+								"SerDeInfo": null,
+								"IsStoredAsSubdirectories": false
+							},
+							"Owner": null,
+							"CreateTime": 0,
+							"LastAccessTime": 0,
+							"Retention": 0,
+							"Temporary": false,
+							"IsRewriteEnabled": false,
+							"ViewOriginalText": null,
+							"ViewExpandedText": null,
+							"Origin": {
+								"Type": "SPARK"
+							},
+							"OriginObjectId": null,
+							"IsSharedEntity": false,
+							"PublishStatus": "PUBLISHED",
+							"Properties": {
+								"Description": "",
+								"DisplayFolderInfo": "{\"name\":\"Others\",\"colorCode\":\"\"}",
+								"PrimaryKeys": "CustomerId",
+								"spark.sql.sources.provider": "csv",
+								"spark.sql.sources.schema.numParts": "1",
+								"spark.sql.sources.schema.part.0": "{\"type\":\"struct\",\"fields\":[{\"name\":\"CustomerId\",\"type\":\"long\",\"nullable\":false,\"metadata\":{}},{\"name\":\"FirstName\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}},{\"name\":\"LastName\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}},{\"name\":\"EmailAddress\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}},{\"name\":\"Phone\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}}]}"
+							},
+							"ObjectVersion": 1,
+							"ObjectId": "b5ef5769-1e73-44d7-996b-53bf82177b9c",
+							"Description": ""
+						},
+						"Source": {
+							"Type": "SPARK"
+						}
+					},
+					{
+						"ActionType": "CREATE",
+						"OldEntity": null,
+						"NewEntity": {
+							"Name": "Product",
+							"EntityType": "TABLE",
+							"TableType": "EXTERNAL",
+							"Namespace": {
+								"SchemaName": null,
+								"DatabaseName": "RetailDB",
+								"DatabaseId": null
+							},
+							"Partitioning": {
+								"PartitionFunctionType": null,
+								"Keys": null
+							},
+							"StorageDescriptor": {
+								"Distribution": null,
+								"Columns": [
+									{
+										"Name": "ProductId",
+										"Description": "The unique identifier of a Product.",
+										"OriginDataTypeName": {
+											"TypeName": "long",
+											"IsComplexType": false,
+											"IsNullable": false,
+											"Length": 0,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "long"
+											}
+										},
+										"BaseAttributeReference": {
+											"Entity": "RetailProduct.cdm.json/RetailProduct",
+											"Name": "ProductId"
+										}
+									},
+									{
+										"Name": "ProductName",
+										"Description": "The name of the Product, which normally corresponds to the 'marketing name' of the Product.",
+										"OriginDataTypeName": {
+											"TypeName": "string",
+											"IsComplexType": false,
+											"IsNullable": true,
+											"Length": 256,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "string"
+											}
+										},
+										"BaseAttributeReference": {
+											"Entity": "RetailProduct.cdm.json/RetailProduct",
+											"Name": "ProductName"
+										}
+									},
+									{
+										"Name": "IntroductionDate",
+										"Description": "The date that the Product was introduced for sale.",
+										"OriginDataTypeName": {
+											"TypeName": "date",
+											"IsComplexType": false,
+											"IsNullable": true,
+											"Length": 0,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"DateFormat": "YYYY-MM-DD",
+												"HIVE_TYPE_STRING": "date"
+											}
+										},
+										"BaseAttributeReference": {
+											"Entity": "RetailProduct.cdm.json/RetailProduct",
+											"Name": "IntroductionDate"
+										}
+									},
+									{
+										"Name": "ActualAbandonmentDate",
+										"Description": "The actual date that the marketing of the product was discontinued. \n\nAbandonment is a component in the decline stage of the product's life cycle characterized by a reduced market demand for the product and an increased number of competing products with similar characteristics.\n\nThere are three (3) strategies for abandoning a product:\n\n(1)  Reduced marketing and expenditures to maintain profits.\n\n(2)  Concentrating on the strongest market segments and eliminating the weaker market segments\n\n(3)  Maintain the marketing level until the product is discontinued.",
+										"OriginDataTypeName": {
+											"TypeName": "date",
+											"IsComplexType": false,
+											"IsNullable": true,
+											"Length": 0,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"DateFormat": "YYYY-MM-DD",
+												"HIVE_TYPE_STRING": "date"
+											}
+										},
+										"BaseAttributeReference": {
+											"Entity": "RetailProduct.cdm.json/RetailProduct",
+											"Name": "ActualAbandonmentDate"
+										}
+									},
+									{
+										"Name": "ProductGrossWeight",
+										"Description": "The gross product weight.",
+										"OriginDataTypeName": {
+											"TypeName": "decimal",
+											"IsComplexType": false,
+											"IsNullable": true,
+											"Length": 0,
+											"Precision": 18,
+											"Scale": 8,
+											"Properties": {
+												"HIVE_TYPE_STRING": "decimal"
+											}
+										},
+										"BaseAttributeReference": {
+											"Entity": "RetailProduct.cdm.json/RetailProduct",
+											"Name": "ProductGrossWeight"
+										}
+									},
+									{
+										"Name": "ItemSku",
+										"Description": "The Stock Keeping Unit identifier, which is typically used for inventory-related activities.",
+										"OriginDataTypeName": {
+											"TypeName": "string",
+											"IsComplexType": false,
+											"IsNullable": true,
+											"Length": 40,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "string"
+											}
+										},
+										"BaseAttributeReference": {
+											"Entity": "RetailProduct.cdm.json/RetailProduct",
+											"Name": "ItemSku"
+										}
+									},
+									{
+										"Name": "ListPrice",
+										"Description": "The product price",
+										"OriginDataTypeName": {
+											"TypeName": "decimal",
+											"IsComplexType": false,
+											"IsNullable": false,
+											"Length": 0,
+											"Precision": 18,
+											"Scale": 2,
+											"Properties": {
+												"HIVE_TYPE_STRING": "decimal"
+											}
+										}
+									}
+								],
+								"ColumnSetEntityName": "547248bd-3d91-431c-a2a2-59d0902079db",
+								"Format": {
+									"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+									"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+									"FormatType": "csv",
+									"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+									"Properties": {
+										"path": "abfss://files@datalakeowbl0dp.dfs.core.windows.net/RetailDB/Product",
+										"delimiter": ",",
+										"firstRowAsHeader": "false",
+										"multiLine": "false",
+										"serialization.format": "1",
+										"escape": "\\",
+										"quote": "\"",
+										"FormatTypeSetToDatabaseDefault": true,
+										"header": "false"
+									}
+								},
+								"Source": {
+									"Provider": "ADLS",
+									"Location": "abfss://files@datalakeowbl0dp.dfs.core.windows.net/RetailDB/Product",
+									"Properties": {
+										"LinkedServiceName": "synapseowbl0dp-WorkspaceDefaultStorage",
+										"LocationSetToDatabaseDefault": true
+									}
+								},
+								"Properties": {
+									"textinputformat.record.delimiter": ",",
+									"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+									"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ProductId\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"ProductId\"},\"ProductName\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"ProductName\"},\"IntroductionDate\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"IntroductionDate\"},\"ActualAbandonmentDate\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"ActualAbandonmentDate\"},\"ProductGrossWeight\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"ProductGrossWeight\"},\"ItemSku\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"ItemSku\"}}}"
+								},
+								"Compressed": false,
+								"SerDeInfo": null,
+								"IsStoredAsSubdirectories": false
+							},
+							"Owner": null,
+							"CreateTime": 0,
+							"LastAccessTime": 0,
+							"Retention": 0,
+							"Temporary": false,
+							"IsRewriteEnabled": false,
+							"ViewOriginalText": null,
+							"ViewExpandedText": null,
+							"Origin": {
+								"Type": "SPARK"
+							},
+							"OriginObjectId": null,
+							"IsSharedEntity": false,
+							"PublishStatus": "PUBLISHED",
+							"Properties": {
+								"DerivedModelEntityInfo": "{\"entityDirectives\":{\"name\":\"Product\",\"description\":\"A product is anything that can be offered to a market that might satisfy a want or need by potential customers.    That product is the sum of all physical, psychological, symbolic, and service attributes associated with it.\\n\\nThere are two basic types of products:\\n\\n- Tangible (physical)\\n- Intangible (non-physical) such as services\\n\\nA service is a non-material or intangible product - such as professional consultancy, maintenance service, repair service etc.\\nEach product has its own benefits, application, brand name, and packaging that gives it its own identity and distinguishing characteristics.\\n\\nEvery business or organization has business rules that define precisely what a product is.    While we intuitively know what a product is, we must quantify that knowledge and associated business rules with consistent definitions that can be implemented within the organization in strategies and applications.\\n\\nA product typically goes through five stages of development:\\n\\n(1) Idea Stage - involving a thorough evaluation of the potential product\\n\\n(2) Concept Stage - determines customer acceptance by testing and presentation to consumers and distribution channel members.   Specific aspects regarding quality, dependability, reliability, warranty, packaging, service, pricing, terms of sale, sales and distribution channels, advertising and promotions are evaluated.\\n\\n(3) Product Development Stage - transforms the prototype product into an actual product for mass sale.   This stage requires close interaction between both marketing and manufacturing.\\n\\n(4) Test Marketing Stage - may or may not be used since it is an expensive and time-consuming process.  Test marketing involves evaluating various product options and alternatives.\\n\\n(5) Commercialization - It is very expensive to launch a new product so commercialization only applies to those specific products that are actually going to be sold to the market.\\n\\nProducts tend to be categorized as either:  Industrial goods and consumer goods\\n\\nIndustrial goods are used to produce other products .\\n\\nIndustrial goods may be further divided into:\\n\\n- Raw materials\\n- Equipment\\n- Pre-built materials \\n- Supplies.\\n\\nConsumer goods are intended for consumption by the general public.\\n\\nConsumer goods may be further divided into:\\n\\n- Durable goods\\n- Nondurable goods\\n- Packaged goods\\n\\nA product may be a member of a product family or product line.\\n\\nA product family is a grouping of products or services that are related to each other by common function, functionality, design platform or similar characteristics.\\n\\nMembers of a product family frequently have many common parts and assemblies.\\n\\nProduct families are the highest level of grouping for forecasting, capacity planning or related functions.\\n\\nEx:\\nThe Apple Macintosh family of products consists of the product lines:\\n- Mac mini\\n- MacBook Pro\\n- Mac Pro\\n\\nA product line is a grouping of products that are closely related in usage, functionality or marketing characteristics.\\n\\nA Product Family typically is created to address one or five functions:\\n\\n1. To increase profits and not erode the sales of existing products\\n\\n2. To attract additional Markets or Market Segments\\n\\n3. To counter competitor's products\\n\\n4. To fill a gap in an existing Product Family.\\n\\n5. To promote sales of other products in the family line\\n\\nLine Depth refers to the number of products in the product line.\\n\\nLine consistency refers to how closely related the products are that make up the product line.\\n\\nLine vulnerability refers to the percentage of sales or profits that are derived from only a few products in the product line.\\n\\nProduct width refers to the number of different product lines sold by a company.\\n\\nProduct mix refers to the total number of products sold in all product lines.\\n\\nLine extension refers to the adding of a new product to a line.\\n\\n\\\"Trading up or brand leveraging\\\" refers to adding a product of better quality to a product line than the other products in that line.\\n\\n\\\"Trading down\\\" refers to adding a product of lesser quality to a product line than the other products in that line.\\n\\nIf a line of products is sold with the same brand name, this is referred to as family branding.\\nStrategy and decisions regarding a product line are usually incorporated in a high-level marketing plan addressing product line strategy, sales, channels, distribution channels, pricing and related issues.\\nA product-line manager is responsible for a product line and supervises several product managers who are responsible for individual products within the line.\\nProduct-line managers typically have the following responsibilities:\\n- Expansion and composition of a product line\\n- Evaluate the effects of product mixes on the profitability of other items in the line\\n- Planning and allocation of resources to individual products in the line\\nA product is normally associated with a brand strategy - manufacturer, private or generic.\\n\\n1. Manufacturer-  or 'national' branding in which the brand is assigned by the manufacturer of the Product.\\n\\n2. Private - or 'dealer' branding in which the brand is assigned by the retailer or wholesaler of the Product.\\n\\n3. Generic - in which the Product is not marked with any identification.   Generic brands are a means for manufacturers to increase profits by saving on advertising, packaging or other costs associated with manufacturer or private branding.\\n\\nA brand is name, term, sign, symbol or design or a combination of these which identify the goods or services and differentiate them from those of competitors'\\n\\nA Trade mark is a brand or some part of the brand that is given legal protection because it is capable of exclusive appropriation and representation.\\n\\nManufacturers can use their own brands (known as Manufacturers' brands) or brands of their distributors (Distributors' brands).\\n\\nManufacturers/ distributors use brand names for a variety of reasons ranging from simple identification purposes to having legal protection for unique features of the products from imitations.\\n\\nBrands help consumers recognize certain quality parameters. In some cases, brands are just used to endow the product with unique story and character which itself can be a basis for product differentiation.\\n\\nIndividual brands have their own identity and the corporate or common name is not used to promote its equity.\\n\\nIndividual branding requires more expensive advertising and brand extensive brand creation investments.  By extension, each new brand does not benefit from the positive perceptions of earlier brands.\\n\\nBy contrast, family branding has several advantages.\\n\\nEach new product is quickly associated with the other products and brand in terms of quality and benefits.\\n\\nReduced or eliminated time for name identification and advertising for name recognition purposes.\",\"baseEntityReference\":{\"name\":\"RetailProduct\",\"path\":\"RetailProduct.cdm.json/RetailProduct\"},\"primaryKey\":[\"ProductId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"ProductName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Product, which normally corresponds to the 'marketing name' of the Product.\",\"isNullable\":true,\"name\":\"ProductName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"IntroductionDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Product was introduced for sale.\",\"isNullable\":true,\"name\":\"IntroductionDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"ActualAbandonmentDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The actual date that the marketing of the product was discontinued. \\n\\nAbandonment is a component in the decline stage of the product's life cycle characterized by a reduced market demand for the product and an increased number of competing products with similar characteristics.\\n\\nThere are three (3) strategies for abandoning a product:\\n\\n(1)  Reduced marketing and expenditures to maintain profits.\\n\\n(2)  Concentrating on the strongest market segments and eliminating the weaker market segments\\n\\n(3)  Maintain the marketing level until the product is discontinued.\",\"isNullable\":true,\"name\":\"ActualAbandonmentDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"ProductGrossWeight\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The gross product weight.\",\"isNullable\":true,\"scale\":8,\"name\":\"ProductGrossWeight\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RetailProduct.cdm.json/RetailProduct\",\"name\":\"ItemSku\"},\"dataType\":\"string\",\"dataTypeLength\":40,\"description\":\"The Stock Keeping Unit identifier, which is typically used for inventory-related activities.\",\"isNullable\":true,\"name\":\"ItemSku\"},{\"type\":\"New\",\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The product price\",\"isNullable\":false,\"scale\":2,\"name\":\"ListPrice\"}]}}}",
+								"Description": "A product is anything that can be offered to a market that might satisfy a want or need by potential customers.    That product is the sum of all physical, psychological, symbolic, and service attributes associated with it.\n\nThere are two basic types of products:\n\n- Tangible (physical)\n- Intangible (non-physical) such as services\n\nA service is a non-material or intangible product - such as professional consultancy, maintenance service, repair service etc.\nEach product has its own benefits, application, brand name, and packaging that gives it its own identity and distinguishing characteristics.\n\nEvery business or organization has business rules that define precisely what a product is.    While we intuitively know what a product is, we must quantify that knowledge and associated business rules with consistent definitions that can be implemented within the organization in strategies and applications.\n\nA product typically goes through five stages of development:\n\n(1) Idea Stage - involving a thorough evaluation of the potential product\n\n(2) Concept Stage - determines customer acceptance by testing and presentation to consumers and distribution channel members.   Specific aspects regarding quality, dependability, reliability, warranty, packaging, service, pricing, terms of sale, sales and distribution channels, advertising and promotions are evaluated.\n\n(3) Product Development Stage - transforms the prototype product into an actual product for mass sale.   This stage requires close interaction between both marketing and manufacturing.\n\n(4) Test Marketing Stage - may or may not be used since it is an expensive and time-consuming process.  Test marketing involves evaluating various product options and alternatives.\n\n(5) Commercialization - It is very expensive to launch a new product so commercialization only applies to those specific products that are actually going to be sold to the market.\n\nProducts tend to be categorized as either:  Industrial goods and consumer goods\n\nIndustrial goods are used to produce other products .\n\nIndustrial goods may be further divided into:\n\n- Raw materials\n- Equipment\n- Pre-built materials \n- Supplies.\n\nConsumer goods are intended for consumption by the general public.\n\nConsumer goods may be further divided into:\n\n- Durable goods\n- Nondurable goods\n- Packaged goods\n\nA product may be a member of a product family or product line.\n\nA product family is a grouping of products or services that are related to each other by common function, functionality, design platform or similar characteristics.\n\nMembers of a product family frequently have many common parts and assemblies.\n\nProduct families are the highest level of grouping for forecasting, capacity planning or related functions.\n\nEx:\nThe Apple Macintosh family of products consists of the product lines:\n- Mac mini\n- MacBook Pro\n- Mac Pro\n\nA product line is a grouping of products that are closely related in usage, functionality or marketing characteristics.\n\nA Product Family typically is created to address one or five functions:\n\n1. To increase profits and not erode the sales of existing products\n\n2. To attract additional Markets or Market Segments\n\n3. To counter competitor's products\n\n4. To fill a gap in an existing Product Family.\n\n5. To promote sales of other products in the family line\n\nLine Depth refers to the number of products in the product line.\n\nLine consistency refers to how closely related the products are that make up the product line.\n\nLine vulnerability refers to the percentage of sales or profits that are derived from only a few products in the product line.\n\nProduct width refers to the number of different product lines sold by a company.\n\nProduct mix refers to the total number of products sold in all product lines.\n\nLine extension refers to the adding of a new product to a line.\n\n\"Trading up or brand leveraging\" refers to adding a product of better quality to a product line than the other products in that line.\n\n\"Trading down\" refers to adding a product of lesser quality to a product line than the other products in that line.\n\nIf a line of products is sold with the same brand name, this is referred to as family branding.\nStrategy and decisions regarding a product line are usually incorporated in a high-level marketing plan addressing product line strategy, sales, channels, distribution channels, pricing and related issues.\nA product-line manager is responsible for a product line and supervises several product managers who are responsible for individual products within the line.\nProduct-line managers typically have the following responsibilities:\n- Expansion and composition of a product line\n- Evaluate the effects of product mixes on the profitability of other items in the line\n- Planning and allocation of resources to individual products in the line\nA product is normally associated with a brand strategy - manufacturer, private or generic.\n\n1. Manufacturer-  or 'national' branding in which the brand is assigned by the manufacturer of the Product.\n\n2. Private - or 'dealer' branding in which the brand is assigned by the retailer or wholesaler of the Product.\n\n3. Generic - in which the Product is not marked with any identification.   Generic brands are a means for manufacturers to increase profits by saving on advertising, packaging or other costs associated with manufacturer or private branding.\n\nA brand is name, term, sign, symbol or design or a combination of these which identify the goods or services and differentiate them from those of competitors'\n\nA Trade mark is a brand or some part of the brand that is given legal protection because it is capable of exclusive appropriation and representation.\n\nManufacturers can use their own brands (known as Manufacturers' brands) or brands of their distributors (Distributors' brands).\n\nManufacturers/ distributors use brand names for a variety of reasons ranging from simple identification purposes to having legal protection for unique features of the products from imitations.\n\nBrands help consumers recognize certain quality parameters. In some cases, brands are just used to endow the product with unique story and character which itself can be a basis for product differentiation.\n\nIndividual brands have their own identity and the corporate or common name is not used to promote its equity.\n\nIndividual branding requires more expensive advertising and brand extensive brand creation investments.  By extension, each new brand does not benefit from the positive perceptions of earlier brands.\n\nBy contrast, family branding has several advantages.\n\nEach new product is quickly associated with the other products and brand in terms of quality and benefits.\n\nReduced or eliminated time for name identification and advertising for name recognition purposes.",
+								"DisplayFolderInfo": "{\"name\":\"Product\",\"colorCode\":\"#BD4B37\"}",
+								"PrimaryKeys": "ProductId",
+								"spark.sql.sources.provider": "csv",
+								"spark.sql.sources.schema.numParts": "1",
+								"spark.sql.sources.schema.part.0": "{\"type\":\"struct\",\"fields\":[{\"name\":\"ProductId\",\"type\":\"long\",\"nullable\":false,\"metadata\":{}},{\"name\":\"ProductName\",\"type\":\"string\",\"nullable\":true,\"metadata\":{}},{\"name\":\"IntroductionDate\",\"type\":\"date\",\"nullable\":true,\"metadata\":{}},{\"name\":\"ActualAbandonmentDate\",\"type\":\"date\",\"nullable\":true,\"metadata\":{}},{\"name\":\"ProductGrossWeight\",\"type\":\"decimal(18,8)\",\"nullable\":true,\"metadata\":{}},{\"name\":\"ItemSku\",\"type\":\"string\",\"nullable\":true,\"metadata\":{}},{\"name\":\"ListPrice\",\"type\":\"decimal(18,2)\",\"nullable\":false,\"metadata\":{}}]}"
+							},
+							"ObjectVersion": 1,
+							"ObjectId": "2e923b69-7d1a-411f-8d7a-51d93b8b454c",
+							"Description": "A product is anything that can be offered to a market that might satisfy a want or need by potential customers.    That product is the sum of all physical, psychological, symbolic, and service attributes associated with it.\n\nThere are two basic types of products:\n\n- Tangible (physical)\n- Intangible (non-physical) such as services\n\nA service is a non-material or intangible product - such as professional consultancy, maintenance service, repair service etc.\nEach product has its own benefits, application, brand name, and packaging that gives it its own identity and distinguishing characteristics.\n\nEvery business or organization has business rules that define precisely what a product is.    While we intuitively know what a product is, we must quantify that knowledge and associated business rules with consistent definitions that can be implemented within the organization in strategies and applications.\n\nA product typically goes through five stages of development:\n\n(1) Idea Stage - involving a thorough evaluation of the potential product\n\n(2) Concept Stage - determines customer acceptance by testing and presentation to consumers and distribution channel members.   Specific aspects regarding quality, dependability, reliability, warranty, packaging, service, pricing, terms of sale, sales and distribution channels, advertising and promotions are evaluated.\n\n(3) Product Development Stage - transforms the prototype product into an actual product for mass sale.   This stage requires close interaction between both marketing and manufacturing.\n\n(4) Test Marketing Stage - may or may not be used since it is an expensive and time-consuming process.  Test marketing involves evaluating various product options and alternatives.\n\n(5) Commercialization - It is very expensive to launch a new product so commercialization only applies to those specific products that are actually going to be sold to the market.\n\nProducts tend to be categorized as either:  Industrial goods and consumer goods\n\nIndustrial goods are used to produce other products .\n\nIndustrial goods may be further divided into:\n\n- Raw materials\n- Equipment\n- Pre-built materials \n- Supplies.\n\nConsumer goods are intended for consumption by the general public.\n\nConsumer goods may be further divided into:\n\n- Durable goods\n- Nondurable goods\n- Packaged goods\n\nA product may be a member of a product family or product line.\n\nA product family is a grouping of products or services that are related to each other by common function, functionality, design platform or similar characteristics.\n\nMembers of a product family frequently have many common parts and assemblies.\n\nProduct families are the highest level of grouping for forecasting, capacity planning or related functions.\n\nEx:\nThe Apple Macintosh family of products consists of the product lines:\n- Mac mini\n- MacBook Pro\n- Mac Pro\n\nA product line is a grouping of products that are closely related in usage, functionality or marketing characteristics.\n\nA Product Family typically is created to address one or five functions:\n\n1. To increase profits and not erode the sales of existing products\n\n2. To attract additional Markets or Market Segments\n\n3. To counter competitor's products\n\n4. To fill a gap in an existing Product Family.\n\n5. To promote sales of other products in the family line\n\nLine Depth refers to the number of products in the product line.\n\nLine consistency refers to how closely related the products are that make up the product line.\n\nLine vulnerability refers to the percentage of sales or profits that are derived from only a few products in the product line.\n\nProduct width refers to the number of different product lines sold by a company.\n\nProduct mix refers to the total number of products sold in all product lines.\n\nLine extension refers to the adding of a new product to a line.\n\n\"Trading up or brand leveraging\" refers to adding a product of better quality to a product line than the other products in that line.\n\n\"Trading down\" refers to adding a product of lesser quality to a product line than the other products in that line.\n\nIf a line of products is sold with the same brand name, this is referred to as family branding.\nStrategy and decisions regarding a product line are usually incorporated in a high-level marketing plan addressing product line strategy, sales, channels, distribution channels, pricing and related issues.\nA product-line manager is responsible for a product line and supervises several product managers who are responsible for individual products within the line.\nProduct-line managers typically have the following responsibilities:\n- Expansion and composition of a product line\n- Evaluate the effects of product mixes on the profitability of other items in the line\n- Planning and allocation of resources to individual products in the line\nA product is normally associated with a brand strategy - manufacturer, private or generic.\n\n1. Manufacturer-  or 'national' branding in which the brand is assigned by the manufacturer of the Product.\n\n2. Private - or 'dealer' branding in which the brand is assigned by the retailer or wholesaler of the Product.\n\n3. Generic - in which the Product is not marked with any identification.   Generic brands are a means for manufacturers to increase profits by saving on advertising, packaging or other costs associated with manufacturer or private branding.\n\nA brand is name, term, sign, symbol or design or a combination of these which identify the goods or services and differentiate them from those of competitors'\n\nA Trade mark is a brand or some part of the brand that is given legal protection because it is capable of exclusive appropriation and representation.\n\nManufacturers can use their own brands (known as Manufacturers' brands) or brands of their distributors (Distributors' brands).\n\nManufacturers/ distributors use brand names for a variety of reasons ranging from simple identification purposes to having legal protection for unique features of the products from imitations.\n\nBrands help consumers recognize certain quality parameters. In some cases, brands are just used to endow the product with unique story and character which itself can be a basis for product differentiation.\n\nIndividual brands have their own identity and the corporate or common name is not used to promote its equity.\n\nIndividual branding requires more expensive advertising and brand extensive brand creation investments.  By extension, each new brand does not benefit from the positive perceptions of earlier brands.\n\nBy contrast, family branding has several advantages.\n\nEach new product is quickly associated with the other products and brand in terms of quality and benefits.\n\nReduced or eliminated time for name identification and advertising for name recognition purposes."
+						},
+						"Source": {
+							"Type": "SPARK"
+						}
+					},
+					{
+						"ActionType": "CREATE",
+						"OldEntity": null,
+						"NewEntity": {
+							"Name": "SalesOrder",
+							"EntityType": "TABLE",
+							"TableType": "EXTERNAL",
+							"Namespace": {
+								"SchemaName": null,
+								"DatabaseName": "RetailDB",
+								"DatabaseId": null
+							},
+							"Partitioning": {
+								"PartitionFunctionType": null,
+								"Keys": null
+							},
+							"StorageDescriptor": {
+								"Distribution": null,
+								"Columns": [
+									{
+										"Name": "SalesOrderId",
+										"Description": "The unique identifier of an order",
+										"OriginDataTypeName": {
+											"TypeName": "long",
+											"IsComplexType": false,
+											"IsNullable": false,
+											"Length": 0,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "long"
+											}
+										}
+									},
+									{
+										"Name": "OrderDate",
+										"Description": "Order date",
+										"OriginDataTypeName": {
+											"TypeName": "timestamp",
+											"IsComplexType": false,
+											"IsNullable": true,
+											"Length": 0,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+												"HIVE_TYPE_STRING": "timestamp"
+											}
+										}
+									},
+									{
+										"Name": "LineItemId",
+										"Description": "Id of individual line item",
+										"OriginDataTypeName": {
+											"TypeName": "long",
+											"IsComplexType": false,
+											"IsNullable": false,
+											"Length": 0,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "long"
+											}
+										}
+									},
+									{
+										"Name": "CustomerId",
+										"Description": "Customer",
+										"OriginDataTypeName": {
+											"TypeName": "long",
+											"IsComplexType": false,
+											"IsNullable": true,
+											"Length": 0,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "long"
+											}
+										}
+									},
+									{
+										"Name": "ProductId",
+										"Description": "Product",
+										"OriginDataTypeName": {
+											"TypeName": "long",
+											"IsComplexType": false,
+											"IsNullable": true,
+											"Length": 0,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "long"
+											}
+										}
+									},
+									{
+										"Name": "Quantity",
+										"Description": "Order quantity",
+										"OriginDataTypeName": {
+											"TypeName": "long",
+											"IsComplexType": false,
+											"IsNullable": true,
+											"Length": 0,
+											"Precision": 0,
+											"Scale": 0,
+											"Properties": {
+												"HIVE_TYPE_STRING": "long"
+											}
+										}
+									}
+								],
+								"ColumnSetEntityName": "32191fe5-62a3-45ef-8bb5-0901993fdf6a",
+								"Format": {
+									"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+									"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+									"FormatType": "csv",
+									"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+									"Properties": {
+										"path": "abfss://files@datalakeowbl0dp.dfs.core.windows.net/RetailDB/SalesOrder",
+										"delimiter": ",",
+										"firstRowAsHeader": "false",
+										"multiLine": "false",
+										"serialization.format": "1",
+										"FormatTypeSetToDatabaseDefault": false,
+										"header": "false"
+									}
+								},
+								"Source": {
+									"Provider": "ADLS",
+									"Location": "abfss://files@datalakeowbl0dp.dfs.core.windows.net/RetailDB/SalesOrder",
+									"Properties": {
+										"LinkedServiceName": "synapseowbl0dp-WorkspaceDefaultStorage",
+										"LocationSetToDatabaseDefault": false
+									}
+								},
+								"Properties": {
+									"textinputformat.record.delimiter": ",",
+									"compression": "",
+									"derivedModelAttributeInfo": "{\"attributeReferences\":{}}"
+								},
+								"Compressed": false,
+								"SerDeInfo": null,
+								"IsStoredAsSubdirectories": false
+							},
+							"Owner": null,
+							"CreateTime": 0,
+							"LastAccessTime": 0,
+							"Retention": 0,
+							"Temporary": false,
+							"IsRewriteEnabled": false,
+							"ViewOriginalText": null,
+							"ViewExpandedText": null,
+							"Origin": {
+								"Type": "SPARK"
+							},
+							"OriginObjectId": null,
+							"IsSharedEntity": false,
+							"PublishStatus": "PUBLISHED",
+							"Properties": {
+								"Description": "",
+								"DisplayFolderInfo": "{\"name\":\"Others\",\"colorCode\":\"\"}",
+								"PrimaryKeys": "SalesOrderId,LineItemId",
+								"spark.sql.sources.provider": "csv",
+								"spark.sql.sources.schema.numParts": "1",
+								"spark.sql.sources.schema.part.0": "{\"type\":\"struct\",\"fields\":[{\"name\":\"SalesOrderId\",\"type\":\"long\",\"nullable\":false,\"metadata\":{}},{\"name\":\"OrderDate\",\"type\":\"timestamp\",\"nullable\":true,\"metadata\":{}},{\"name\":\"LineItemId\",\"type\":\"long\",\"nullable\":false,\"metadata\":{}},{\"name\":\"CustomerId\",\"type\":\"long\",\"nullable\":true,\"metadata\":{}},{\"name\":\"ProductId\",\"type\":\"long\",\"nullable\":true,\"metadata\":{}},{\"name\":\"Quantity\",\"type\":\"long\",\"nullable\":true,\"metadata\":{}}]}"
+							},
+							"ObjectVersion": 1,
+							"ObjectId": "3f238a8e-21c7-4443-949c-3ac6d6b5dce0",
+							"Description": ""
+						},
+						"Source": {
+							"Type": "SPARK"
+						}
+					},
+					{
+						"ActionType": "CREATE",
+						"OldEntity": null,
+						"NewEntity": {
+							"Name": "relationship-aqkaaurgcc",
+							"EntityType": "RELATIONSHIP",
+							"Namespace": {
+								"DatabaseName": "RetailDB"
+							},
+							"Origin": {
+								"Type": "SPARK"
+							},
+							"FromTableName": "Product",
+							"ToTableName": "SalesOrder",
+							"ColumnRelationshipInformations": [
+								{
+									"FromColumnName": "ProductId",
+									"ToColumnName": "ProductId"
+								}
+							],
+							"RelationshipType": 0,
+							"PublishStatus": "PUBLISHED",
+							"ObjectVersion": 1,
+							"ObjectId": "e812093c-7774-40dd-91e6-5d7c0726372e",
+							"Properties": {}
+						},
+						"Source": {
+							"Type": "SPARK"
+						}
+					},
+					{
+						"ActionType": "CREATE",
+						"OldEntity": null,
+						"NewEntity": {
+							"Name": "relationship-edrtbkjszf",
+							"EntityType": "RELATIONSHIP",
+							"Namespace": {
+								"DatabaseName": "RetailDB"
+							},
+							"Origin": {
+								"Type": "SPARK"
+							},
+							"FromTableName": "Customer",
+							"ToTableName": "SalesOrder",
+							"ColumnRelationshipInformations": [
+								{
+									"FromColumnName": "CustomerId",
+									"ToColumnName": "CustomerId"
+								}
+							],
+							"RelationshipType": 0,
+							"PublishStatus": "PUBLISHED",
+							"ObjectVersion": 1,
+							"ObjectId": "8c4d9dda-834a-4cd1-a7c1-9ddace75385b",
+							"Properties": {}
+						},
+						"Source": {
+							"Type": "SPARK"
+						}
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/sqlxkq0jys')]",
+			"type": "Microsoft.Synapse/workspaces/sqlPools",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"collation": "SQL_Latin1_General_CP1_CI_AS",
+				"maxSizeBytes": 263882790666240,
+				"annotations": []
+			},
+			"dependsOn": [],
+			"location": "westeurope"
+		}
+	]
+}
