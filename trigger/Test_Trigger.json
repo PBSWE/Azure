@@ -1,0 +1,26 @@
+{
+	"name": "Test_Trigger",
+	"properties": {
+		"description": "Test trigger",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Load Product Data",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 24,
+				"startTime": "2024-04-04T22:31:00",
+				"endTime": "2024-04-05T22:31:00",
+				"timeZone": "Pacific Standard Time"
+			}
+		}
+	}
+}
