@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [ProductKey]\n,[ProductAltKey]\n,[ProductName]\n,[Color]\n,[Size]\n,[ListPrice]\n,[Discontinued]\n FROM [dbo].[DimProduct]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "sqlxkq0jys",
+				"poolName": "sqlxkq0jys"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
