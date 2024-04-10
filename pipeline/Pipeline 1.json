@@ -1,43 +1,6 @@
 {
 	"name": "Pipeline 1",
 	"properties": {
-		"activities": [
-			{
-				"name": "Spark Transform",
-				"type": "SynapseNotebook",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"notebook": {
-						"referenceName": "Spark Transform",
-						"type": "NotebookReference"
-					},
-					"parameters": {
-						"folderName": {
-							"value": {
-								"value": "@pipeline().RunId",
-								"type": "Expression"
-							},
-							"type": "string"
-						}
-					},
-					"snapshot": true,
-					"sparkPool": {
-						"referenceName": "sparktho2a7m",
-						"type": "BigDataPoolReference"
-					},
-					"executorSize": "Small",
-					"driverSize": "Small"
-				}
-			}
-		],
 		"annotations": []
 	}
 }
